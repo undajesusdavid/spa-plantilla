@@ -1,0 +1,148 @@
+:root {
+  --bg-main: #f8fafc;        /* Fondo general gris muy claro */
+  --bg-sidebar: #ffffff;     /* Sidebar blanco puro */
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;   /* Bordes suaves */
+  --primary: #2563eb;        /* Azul corporativo vibrante */
+  --primary-hover: #1d4ed8;
+  --text-main: #0f172a;      /* Texto casi negro para legibilidad */
+  --text-muted: #64748b;     /* Texto gris para elementos secundarios */
+  --sidebar-width: 220px;
+}
+
+.appShell { 
+    min-height: 100vh; 
+    background-color: var(--bg-main);
+    color: var(--text-main); 
+    display: flex; 
+    flex-direction: column;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Header con efecto Blur */
+.header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background: rgba(255, 255, 255, 0.8); 
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color); 
+    padding: 0.5rem 1.25rem; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+}
+
+.brand { display: flex; align-items: center; gap: 0.6rem; }
+.logo { font-size: 1.4rem; }
+.title { font-weight: 700; font-size: 1rem; color: #1e293b; }
+.subtitle { color: var(--primary); font-size: 0.65rem; font-weight: 700; }
+
+/* Navegación Superior */
+.nav { display: flex; gap: 0.5rem; }
+.navLink { 
+    color: var(--text-muted); 
+    text-decoration: none; 
+    padding: 0.4rem 0.7rem; 
+    font-size: 0.85rem; 
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.navLink:hover { 
+    background: #f1f5f9;
+    color: var(--text-main);
+}
+
+/* Layout */
+.appMain { 
+    display: grid; 
+    grid-template-columns: var(--sidebar-width) 1fr; 
+    flex: 1;
+}
+
+/* Sidebar Light */
+.sideMenu { 
+    background: var(--bg-sidebar); 
+    border-right: 1px solid var(--border-color); 
+    padding: 1rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.sideTitle { 
+    color: var(--text-muted); 
+    font-size: 0.7rem; 
+    text-transform: uppercase; 
+    font-weight: 600;
+    padding: 0.5rem;
+}
+
+/* Botones de Módulo */
+.moduleButton { 
+    width: 100%; 
+    border: 0; 
+    background: transparent; 
+    color: #334155; 
+    padding: 0.6rem 0.75rem; 
+    display: flex; 
+    align-items: center; 
+    gap: 0.6rem;
+    cursor: pointer; 
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.moduleButton:hover { 
+    background: #f1f5f9;
+    color: var(--primary);
+}
+
+.chevron { 
+    margin-left: auto; 
+    font-size: 0.7rem; 
+    color: #94a3b8;
+}
+
+/* Submenú */
+.submenu { 
+    list-style: none; 
+    margin: 0.1rem 0 0.5rem 1.25rem; 
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--border-color);
+}
+
+.subLink { 
+    color: var(--text-muted); 
+    text-decoration: none; 
+    font-size: 0.8rem; 
+    display: block; 
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.subLink:hover { 
+    color: var(--primary); 
+    background: #eff6ff; /* Azul muy pálido */
+}
+
+/* Área de Contenido Principal */
+.mainContent { 
+    padding: 1.5rem;
+    background-color: var(--bg-main);
+}
+
+/* Footer */
+.footer { 
+    text-align: center; 
+    color: var(--text-muted); 
+    font-size: 0.75rem; 
+    padding: 0.8rem; 
+    background: white;
+    border-top: 1px solid var(--border-color); 
+}

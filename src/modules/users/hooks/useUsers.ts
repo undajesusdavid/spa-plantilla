@@ -1,0 +1,24 @@
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { usersApi } from '../services/users.service';
+import { AuthUserRequest, CreateUserRequest } from '../domain/schemas';
+
+export const useLogin = (onSuccess: () => void) => {
+  return useMutation({
+    mutationFn: (body: AuthUserRequest) => usersApi.login(body),
+    onSuccess,
+  });
+};
+
+export const useCreateUser = () => {
+  return useMutation({
+    mutationFn: (body: CreateUserRequest) => usersApi.createUser(body),
+  });
+};
+
+export const useUsersList = () => {
+  return useQuery({
+    queryKey: ['users'],
+    queryFn: usersApi.listUsers,
+    staleTime: 1000 * 60,
+  });
+};
