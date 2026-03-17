@@ -1,0 +1,44 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    list-style: none;
+    margin: 0;
+    font-size: 0.75rem;
+    /* Compacto */
+    color: #888;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+    font-weight: 500;
+}
+
+.link:hover {
+    color: #000;
+}
+
+.separator {
+    margin: 0 8px;
+    color: #ccc;
+    user-select: none;
+    font-weight: 300;
+}
+
+.active {
+    color: #1a1a1a;
+    font-weight: 600;
+    pointer-events: none;
+    /* La página actual no es clickeable */
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

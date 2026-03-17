@@ -11,7 +11,7 @@ export function AppRoutes() {
       />
 
       {/* Módulo de Usuarios */}
-      <Route path="/dashboard" element={<div>Lista de Usuarios</div>} />
+      <Route path="/users" element={<div>Lista de Usuarios</div>} />
       <Route path="/users/create" element={<div>Formulario de Creación</div>} />
 
       {/* Módulo de Inventario */}

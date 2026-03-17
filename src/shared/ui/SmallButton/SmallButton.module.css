@@ -1,0 +1,60 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    /* Muy compacto y elegante */
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+/* Variante Principal: Sólida */
+.primary {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.primary:hover {
+    background-color: #333333;
+    transform: translateY(-1px);
+}
+
+/* Variante Secundaria: Con borde */
+.secondary {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border-color: #e5e5e5;
+}
+
+.secondary:hover {
+    background-color: #fafafa;
+    border-color: #d1d1d1;
+}
+
+/* Variante Ghost: Solo texto */
+.ghost {
+    background: transparent;
+    color: #666;
+}
+
+.ghost:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: #000;
+}
+
+.btn:active {
+    transform: translateY(0);
+    opacity: 0.8;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}

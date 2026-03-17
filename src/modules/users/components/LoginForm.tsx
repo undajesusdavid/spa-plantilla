@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth.store";
 import { useLogin } from "../hooks/useUsers";
 import { AuthUserRequestDto } from "../domain/schemas";
-import { Button } from "../../../shared/ui/Button";
+import { BigButton } from "../../../shared/ui/BigButton";
 import { Input } from "../../../shared/ui/Input";
 import styles from "./LoginForm.module.css";
 
@@ -64,9 +64,9 @@ export function LoginForm() {
         </div>
       )}
 
-      <Button type="submit" disabled={loginMutation.isPending}>
+      <BigButton type="submit" disabled={loginMutation.isPending}>
         {loginMutation.isPending ? "Validando..." : "Ingresar al sistema"}
-      </Button>
+      </BigButton>
     </form>
   );
 }
