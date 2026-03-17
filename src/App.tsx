@@ -10,16 +10,16 @@ const menuItems = [
     icon: "👥",
     title: "Usuarios",
     links: [
-      { label: "Lista", to: "/users" },
-      { label: "Crear", to: "/users/create" },
+      { label: "Lista de Usuarios", to: "/users" },
+      { label: "Crear Usuario", to: "/users/create" },
     ],
   },
   {
-    icon: "🗂️",
-    title: "Inventario",
+    icon: "🫆",
+    title: "Seguridad",
     links: [
-      { label: "Cajas", to: "/inventory/boxes" },
-      { label: "Buscar item", to: "/inventory/search" },
+      { label: "Lista de Roles", to: "/security/roles" },
+      { label: "Lista de Permisos", to: "/security/permissions" },
     ],
   },
 ];

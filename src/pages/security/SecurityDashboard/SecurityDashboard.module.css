@@ -1,0 +1,56 @@
+/* Nueva sección de métricas */
+.metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 2.5rem;
+}
+
+.metricCard {
+    background: #f9f9fb;
+    padding: 1.25rem;
+    border-radius: 20px;
+    border: 1px solid #f0f0f3;
+    transition: transform 0.2s ease;
+}
+
+.metricCard:hover {
+    transform: translateY(-3px);
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+}
+
+.metricEmoji {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.metricValue {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1c1c1e;
+    line-height: 1;
+}
+
+.metricLabel {
+    display: block;
+    font-size: 0.7rem;
+    color: #8e8e93;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+    line-height: 1.2;
+}
+
+/* Color especial para alertas críticas */
+.alertHigh {
+    color: #ff3b30;
+    /* Rojo Apple para fallidos o tráfico inusual */
+}
+
+.alertWarning {
+    color: #ff9500;
+    /* Naranja para cambios de permisos */
+}

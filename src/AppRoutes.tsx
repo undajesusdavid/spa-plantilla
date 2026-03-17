@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import DashboardPage from "./pages/dashboard/DashboardPage";
+import UserRouter from "./pages/users/UserRouter";
+import SecurityRouter from "./pages/security/SecurityRouter";
 
 export function AppRoutes() {
   return (
@@ -11,11 +13,11 @@ export function AppRoutes() {
       />
 
       {/* Módulo de Usuarios */}
-      <Route path="/users" element={<div>Lista de Usuarios</div>} />
-      <Route path="/users/create" element={<div>Formulario de Creación</div>} />
+      <Route path="/users/*" element={<UserRouter />} />
+     
 
-      {/* Módulo de Inventario */}
-      <Route path="/inventory/boxes" element={<div>Gestión de Cajas</div>} />
+      {/* Módulo de Seguridad */}
+      <Route path="/security/*" element={<SecurityRouter />} />
 
       {/* Perfil */}
       <Route path="/profile" element={<div>Mi Perfil de Usuario</div>} />

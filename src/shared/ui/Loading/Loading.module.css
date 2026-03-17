@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1rem;
+    /* Animación de aparición suave para el contenedor */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Estado para ocupar toda la pantalla (ej: carga inicial de la App) */
+.fullScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    /* Efecto blur elegante */
+    z-index: 9999;
+}
+
+.spinnerWrapper {
+    width: 40px;
+    /* Tamaño por defecto del spinner */
+    height: 40px;
+}
+
+.spinner {
+    width: 100%;
+    height: 100%;
+    /* Rotación continua e infinita */
+    animation: rotate 2s linear infinite;
+}
+
+.carter {
+    /* Color de fondo del arco (muy pálido) */
+    stroke: rgba(37, 99, 235, 0.1);
+}
+
+.path {
+    /* Color principal de la App (var(--primary) de tu MainLayout) */
+    stroke: #2563eb;
+    stroke-dasharray: 1, 150;
+    /* Longitud inicial del arco */
+    stroke-dashoffset: 0;
+    /* Animación compleja del arco */
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+.label {
+    font-size: 0.875rem;
+    color: #64748b;
+    /* var(--text-muted) */
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* --- Keyframes de Animaciones --- */
+
+/* 1. Rotación del SVG completo */
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 2. Animación del arco (crecer/encoger y desfase) */
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        /* El arco crece hasta 90px */
+        stroke-dashoffset: -35;
+        /* Y se desplaza */
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+        /* Termina el ciclo */
+    }
+}
+
+/* 3. FadeIn suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

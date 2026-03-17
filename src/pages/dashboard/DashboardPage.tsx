@@ -1,5 +1,4 @@
-import Navbar from "../../shared/components/nav-bar/Navbar";
-import { BigButton } from "../../shared/ui/BigButton";
+import { NavBar } from "../../shared/ui/NavBar";
 import SmallButton from "../../shared/ui/SmallButton";
 
 export default function DashboardPage() {
@@ -11,7 +10,7 @@ export default function DashboardPage() {
 
   return (
     <div>
-      <Navbar
+      <NavBar
         logo={
           <span>
             Acme<span style={{ color: "#999" }}>.</span>

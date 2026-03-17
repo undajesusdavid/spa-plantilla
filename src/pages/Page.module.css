@@ -1,0 +1,30 @@
+.RootPage {
+    background: white;
+    padding: 2px 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    /* Un borde sutil ayuda a definir */
+    border-radius: 5px;
+}
+
+.titlePage {
+    /* font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; */
+    font-size: 1rem;
+    /* Tamaño comedido, muy sofisticado */
+    font-weight: 500;
+    /* Medium: ni grueso ni fino */
+    text-transform: uppercase;
+    /* Mayúsculas para autoridad */
+    letter-spacing: 0.15em;
+    /* Espaciado amplio = Lujo moderno */
+    color: #1a1a1a;
+    line-height: 1.2;
+    border-left: 3px solid #000;
+    /* Un detalle minimalista lateral */
+    padding-left: 15px;
+}
+
+
+.contentPage {
+    padding: 0px 5px;
+}

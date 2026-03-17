@@ -13,7 +13,7 @@ interface NavbarProps {
   actions?: ReactNode;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ logo, links, actions }) => {
+export const NavBar: React.FC<NavbarProps> = ({ logo, links, actions }) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
@@ -31,4 +31,3 @@ const Navbar: React.FC<NavbarProps> = ({ logo, links, actions }) => {
   );
 };
 
-export default Navbar;
