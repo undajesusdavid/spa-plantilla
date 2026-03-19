@@ -1,44 +1,62 @@
-.wrapper {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+.container {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    /* Mantiene los bordes redondeados */
+}
+
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    /* Responsividad automática */
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: inherit;
+    text-align: left;
 }
 
 .table th {
-    text-align: left;
     padding: 12px 16px;
-    background: #f9fafb;
-    color: #4b5563;
-    font-size: 0.875rem;
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 0.75rem;
     font-weight: 600;
-    border-bottom: 1px solid #e5e7eb;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #f3f4f6;
+    padding: 14px 16px;
     font-size: 0.875rem;
-    color: #1f2937;
+    color: #1e293b;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
 }
 
-.selectedRow {
-    background-color: #f0f7ff;
+/* Efecto Hover en filas */
+.table tbody tr {
+    transition: background-color 0.15s ease;
 }
 
-.checkboxCol {
-    width: 40px;
+.table tbody tr:hover {
+    background-color: #f1f5f9;
 }
 
-.emptyState {
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estado vacío */
+.empty {
+    padding: 48px;
     text-align: center;
-    padding: 40px;
-    color: #9ca3af;
+    color: #94a3b8;
+    font-style: italic;
 }

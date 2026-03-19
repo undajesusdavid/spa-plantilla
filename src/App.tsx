@@ -1,54 +1,31 @@
 import { MainLayout } from "./shared/layouts/MainLayout";
-import { AppRoutes } from "./AppRoutes";
+import { PrivateRoutes, PublicRoutes } from "./routes";
 import { useAuthStore } from "./modules/users";
-import { Navigate, Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/login/LoginPage";
+import { MENU_ITEMS } from "./shared/constants/menu-items";
 import SmallButton from "./shared/ui/SmallButton";
 
-const menuItems = [
-  {
-    icon: "👥",
-    title: "Usuarios",
-    links: [
-      { label: "Lista de Usuarios", to: "/users" },
-      { label: "Crear Usuario", to: "/users/create" },
-    ],
-  },
-  {
-    icon: "🫆",
-    title: "Seguridad",
-    links: [
-      { label: "Lista de Roles", to: "/security/roles" },
-      { label: "Lista de Permisos", to: "/security/permissions" },
-    ],
-  },
-];
-
-
 export default function App() {
-  const {token, logout, username} = useAuthStore();
+  const { token, logout, username } = useAuthStore();
 
+  // 1. Verificación de autenticación limpia
   if (!token) {
-    return (
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    );
+    return <PublicRoutes />;
   }
 
+  // 2. Preparación de elementos de UI (opcional, para claridad)
+  const headerConfig = {
+    links: [
+      { label: username || "Usuario", to: "/perfil" }
+    ],
+    actions: (
+      <SmallButton variant="primary" onClick={logout}> Salir </SmallButton>
+    ),
+  };
+
+  // 3. Renderizado de la aplicación privada
   return (
-    <MainLayout 
-      menuItems={menuItems} 
-      headerItems={{
-        links: [
-          { label: username || "unknown", to: "/perfil" }
-        ],
-        actions: <>
-          <SmallButton variant="primary" onClick={logout}>Salir</SmallButton>
-        </>
-      }}>
-      <AppRoutes />
+    <MainLayout menuItems={MENU_ITEMS} headerItems={headerConfig}>
+      <PrivateRoutes />
     </MainLayout>
   );
 }

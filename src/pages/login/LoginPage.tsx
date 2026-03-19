@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { LoginForm } from "../../modules/users/components/LoginForm";
+import { LoginForm } from "../../modules/users";
 import { useAuthStore } from "../../modules/users/store/auth.store";
 import styles from "./LoginPage.module.css";
 

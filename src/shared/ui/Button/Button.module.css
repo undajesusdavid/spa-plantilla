@@ -1,3 +1,5 @@
+
+
 .btn {
     margin: 2px;
     display: inline-flex;
@@ -109,4 +111,26 @@
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
+}
+
+/* Escalas de tamaño */
+.sm {
+    padding: 4px 12px;
+    font-size: 0.75rem;
+}
+
+.md {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+}
+
+.lg {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    /* Un poco más redondo para botones grandes */
+}
+
+.fullWidth {
+    width: 100%;
 }

@@ -1,10 +1,10 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/auth.store";
-import { useLogin } from "../hooks/useUsers";
-import { AuthUserRequestDto } from "../domain/schemas";
-import { BigButton } from "../../../shared/ui/BigButton";
-import { Input } from "../../../shared/ui/Input";
+import { useAuthStore } from "../../store/auth.store";
+import { useLogin } from "../../hooks/useUsers";
+import { AuthUserRequestDto } from "../../domain/schemas";
+import { BigButton } from "../../../../shared/ui/BigButton";
+import { Input } from "../../../../shared/ui/Input";
 import styles from "./LoginForm.module.css";
 
 export function LoginForm() {
@@ -13,7 +13,7 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
 
   // Aprovechamos las bondades de React Query (isPending)
-  const loginMutation = useLogin();
+  const loginMutation = useLogin(() => null);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -1,1 +1,1 @@
-export { BigButton } from "./BigButton";
+export * from "./BigButton";

@@ -21,6 +21,7 @@ export function HeaderLayout({ headerItems }: HeaderProps) {
       <nav className={styles.nav}>
         {headerItems.links.map((link) => (
           <NavLink
+            key={link.to}
             to={link.to}
             className={({ isActive }) =>
               isActive ? styles.navLinkActive : styles.navLink

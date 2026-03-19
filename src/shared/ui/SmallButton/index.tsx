@@ -3,7 +3,7 @@ import styles from "./SmallButton.module.css";
 
 interface SmallButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "danger" | "success" | "warning" | "outline-danger";
   icon?: ReactNode;
 }
 

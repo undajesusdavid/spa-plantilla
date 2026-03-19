@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    background-color: #fcfcfc;
+    border: 1px border #eee;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+.iconWrapper {
+    color: #ff4d4f;
+    margin-bottom: 1.5rem;
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(0 4px 6px rgba(255, 77, 79, 0.2));
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.75rem 0;
+}
+
+.message {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+}
+
+.code {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.retryButton {
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.retryButton:hover {
+    background-color: #333;
+    transform: translateY(-1px);
+}
+
+.retryButton:active {
+    transform: translateY(0);
+}
