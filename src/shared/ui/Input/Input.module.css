@@ -1,54 +1,81 @@
+/* Contenedor del Label + Input */
 .wrapper {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    /* Hereda la dirección (row/column) del FieldGroup mediante variables */
+    flex-direction: var(--input-direction, column);
+    align-items: var(--input-align, flex-start);
+    gap: var(--input-gap, 0.4rem);
     width: 100%;
-}
-
-.label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #334155;
-    /* Slate 700 */
-    margin-left: 0.2rem;
-}
-
-.input {
-    width: 100%;
-    padding: 0.65rem 0.9rem;
-    font-size: 0.95rem;
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    /* Slate 200 */
-    border-radius: 8px;
-    color: #0f172a;
     transition: all 0.2s ease;
-    outline: none;
 }
 
-/* Efecto al hacer clic o tabulación */
-.input:focus {
-    border-color: #3b82f6;
-    /* Blue 500 */
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-    background-color: #fff;
+/* La Etiqueta */
+.label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    /* Gris oscuro profesional (Slate 700), no negro puro */
+    color: #334155;
+    min-width: var(--label-width, auto);
+    text-align: var(--label-align, left);
+    flex-shrink: 0;
+    user-select: none;
 }
 
-/* Estilo para el placeholder */
+/* El Campo de Texto */
+.input {
+    flex: 1;
+    width: 100%;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    /* Texto principal en Slate 900 */
+    color: #0f172a;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    /* Borde suave */
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+    appearance: none;
+    /* Elimina estilos nativos de iOS/Android */
+}
+
+/* Placeholder sutil */
 .input::placeholder {
     color: #94a3b8;
-    font-size: 0.9rem;
+    font-weight: 400;
 }
 
-/* Estado deshabilitado */
+/* Estado: Focus (Azul sutil de sistema) */
+.input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Estado: Hover (Solo si no está en focus) */
+.input:hover:not(:focus):not(:disabled) {
+    border-color: #94a3b8;
+}
+
+/* Estado: Deshabilitado */
 .input:disabled {
-    background-color: #f1f5f9;
+    background-color: #f8fafc;
+    color: #94a3b8;
+    border-color: #e2e8f0;
     cursor: not-allowed;
-    opacity: 0.7;
 }
 
-/* Mejora para el autocompletado del navegador */
-.input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-    -webkit-text-fill-color: #0f172a !important;
+/* Estado: Error (Opcional, si pasas una prop 'error' al componente) */
+.inputError {
+    border-color: #ef4444 !important;
+}
+
+.inputError:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.errorMessage {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.2rem;
 }

@@ -1,48 +1,102 @@
 import { ErrorDisplay } from "../../../../shared/ui/ErrorDisplay";
-import { Loading } from "../../../../shared/ui/Loading";
+import { FieldGroup } from "../../../../shared/ui/FieldGroup";
+import { Input } from "../../../../shared/ui/Input";
+import { Form } from "../../../../shared/ui/Form"; // Usamos el orquestador
+import { Button } from "../../../../shared/ui/Button";
 import { useCreateUser } from "../../hooks/useUsers";
+import { useApiErrors } from "../../../../api/hooks/useApiErrors";
+import { useToast } from "../../../../shared/context/ToastContext";
+
+// Definimos la interfaz aquí para tener Type Safety total
+interface CreateUserPayload {
+  username: string;
+  password: string;
+  email: string;
+}
 
 export function CreateUserForm() {
   const { mutate, isPending, isError, error, reset } = useCreateUser();
+  const { inputErrors } = useApiErrors<CreateUserPayload>(error);
+  const { addToast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const userData = {
-      username: formData.get("username") as string,
-      password: formData.get("password") as string,
-      email: formData.get("email") as string,
-    };
-    // Ejecutamos la mutación
-    mutate(userData);
+  const handleSave = (
+    data: CreateUserPayload,
+    e?: React.FormEvent<HTMLFormElement>,
+  ) => {
+    const targetForm = e?.currentTarget;
+    mutate(data, {
+      onSuccess: () => {
+        targetForm?.reset();
+        reset();
+        addToast("success","Registrado Exitosamente");
+      },
+      onError: () => {
+         addToast("error","No se pudo registrar");
+      },
+    });
   };
 
-  // 1. Estado de Error: Si la mutación falla, mostramos el componente elegante
-  if (isError) {
-    return (
-      <ErrorDisplay
-        title="Error al crear usuario"
-        message={
-          error instanceof Error
-            ? error.message
-            : "Hubo un problema con el servidor."
-        }
-        onRetry={() => reset()} // reset() limpia el estado de error de la mutación
-        errorCode="AUTH_001"
-      />
-    );
-  }
+  // if (isError) {
+  //   return (
+  //     <ErrorDisplay
+  //       title="Error al crear usuario"
+  //       message={error instanceof Error ? error.message : "Error desconocido"}
+  //       onRetry={() => reset()}
+  //       errorCode="AUTH_001"
+  //     />
+  //   );
+  // }
+
+  const actions = (
+    <>
+      <Button
+        type="submit"
+        disabled={isPending}
+        variant={isPending ? "secondary" : "primary"}
+      >
+        {isPending ? "Guardando..." : "Crear Cuenta"}
+      </Button>
+    </>
+  );
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="username" placeholder="Nombre de Usuario" required />
-      <input type="password" name="password" placeholder="Contraseña" required />
-      <input name="email" type="email" placeholder="Email" required />
+    <Form<CreateUserPayload> onSubmit={handleSave} actions={actions}>
+      <FieldGroup
+        title="Información Personal"
+        orientation="vertical"
+        columns={1}
+      >
+        <Input
+          label="Usuario"
+          name="username"
+          placeholder="Ej. jdoe"
+          required
+          error={inputErrors.username} // Pasamos el error del server
+        />
+        <Input
+          label="Contraseña"
+          name="password"
+          type="password"
+          required
+          error={inputErrors.password}
+        />
+        <Input
+          label="Email"
+          name="email"
+          type="email"
+          required
+          error={inputErrors.email}
+        />
+      </FieldGroup>
 
-      <button type="submit" disabled={isPending}>
-        {isPending ? "Guardando..." : "Crear Cuenta"}
-      </button>
-    </form>
+      {/* Opcional: Un mensaje general si el error no es de un campo específico */}
+      {isError && !Object.keys(inputErrors).length && (
+        <p>
+          {error instanceof Error
+            ? error.message
+            : "Error interno del servidor"}
+        </p>
+      )}
+    </Form>
   );
 }

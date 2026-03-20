@@ -1,0 +1,129 @@
+.toastContainer {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Un poco más de aire entre ellos */
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    min-width: 320px;
+    max-width: 420px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    /* Bordes más curvos y modernos */
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    /* Efecto Glassmorphism sutil */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+
+    /* Sombra multicapa para más realismo */
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 10px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Borde completo muy fino con acento en la izquierda */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--toast-color);
+
+    /* Animación mejorada */
+    animation: springIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transition: all 0.3s ease;
+}
+
+/* Hover suave para interactividad */
+.toast:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    /* Un poco más grande */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--toast-color);
+    /* Opcional: un fondo circular muy tenue para el icono */
+    background: var(--toast-bg-soft);
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.content {
+    flex: 1;
+    padding-top: 2px;
+}
+
+.title {
+    display: block;
+    font-weight: 700;
+    /* Más peso visual */
+    font-size: 0.9rem;
+    color: #0f172a;
+    /* Slate 900 */
+    margin-bottom: 2px;
+}
+
+.message {
+    font-size: 0.85rem;
+    color: #475569;
+    /* Slate 600 */
+    line-height: 1.5;
+    font-weight: 450;
+}
+
+/* Variantes con colores más vibrantes y fondos suaves para el icono */
+.success {
+    --toast-color: #10b981;
+    --toast-bg-soft: rgba(16, 185, 129, 0.1);
+}
+
+.error {
+    --toast-color: #f43f5e;
+    --toast-bg-soft: rgba(244, 63, 94, 0.1);
+}
+
+.warning {
+    --toast-color: #f59e0b;
+    --toast-bg-soft: rgba(245, 158, 11, 0.1);
+}
+
+.info {
+    --toast-color: #0ea5e9;
+    --toast-bg-soft: rgba(14, 165, 233, 0.1);
+}
+
+/* Keyframes de entrada con "Spring" (rebote) */
+@keyframes springIn {
+    0% {
+        opacity: 0;
+        transform: translateX(40px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.fadeOut {
+    animation: fadeOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(20px) scale(0.95);
+        filter: blur(4px);
+    }
+}

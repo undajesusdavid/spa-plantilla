@@ -1,0 +1,78 @@
+.fieldset {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    min-width: 0;
+    /* Evita que el flex/grid rompa el layout */
+}
+
+.legend {
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: #64748b;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.description {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    margin-top: -0.25rem;
+    padding: 0 0.25rem;
+}
+
+.container {
+    display: grid;
+    gap: 1rem;
+    /* Espaciado entre celdas */
+}
+
+/* --- Lógica de Columnas --- */
+.columns1 {
+    grid-template-columns: 1fr;
+}
+
+.columns2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.columns3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* --- Lógica de Orientación mediante Variables --- */
+/* Estas variables serán consumidas por el componente Input */
+
+.vertical {
+    --input-direction: column;
+    --input-align: flex-start;
+    /* Nueva variable */
+    --input-gap: 0.25rem;
+}
+
+.horizontal {
+    --input-direction: row;
+    --input-align: center;
+    /* Cambiamos la alineación aquí */
+    --input-gap: 1rem;
+}
+
+/* Responsive: Forzamos verticalidad en pantallas pequeñas */
+@media (max-width: 640px) {
+
+    .columns2,
+    .columns3 {
+        grid-template-columns: 1fr;
+    }
+
+    .horizontal {
+        --input-direction: column;
+        --label-width: auto;
+        --label-align: left;
+        --input-gap: 0.25rem;
+    }
+}

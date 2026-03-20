@@ -1,0 +1,34 @@
+.form {
+    width: 100%;
+    max-width: 800px;
+    /* Un ancho estándar para dashboards */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    /* Espacio reducido entre FieldGroups */
+}
+
+.formTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    padding-left: 0.25rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* Los FieldGroups estarán muy cerca uno del otro */
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid #f1f5f9;
+}
