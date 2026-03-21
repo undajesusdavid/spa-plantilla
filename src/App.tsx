@@ -4,8 +4,7 @@ import { useAuthStore } from "./modules/users";
 import { MENU_ITEMS } from "./shared/constants/menu-items";
 import SmallButton from "./shared/ui/SmallButton";
 import { ToastProvider } from "./shared/context/ToastContext";
-import { useToast } from "./shared/hooks/useToast";
-import { Toast } from "./shared/ui/Toast";
+import { ModalProvider } from "./shared/context/ModalContext";
 
 export default function App() {
   const { token, logout, username } = useAuthStore();
@@ -28,9 +27,11 @@ export default function App() {
   // 3. Renderizado de la aplicación privada
   return (
     <ToastProvider>
-      <MainLayout menuItems={MENU_ITEMS} headerItems={headerConfig}>
-        <PrivateRoutes />
-      </MainLayout>
+      <ModalProvider>
+        <MainLayout menuItems={MENU_ITEMS} headerItems={headerConfig}>
+          <PrivateRoutes />
+        </MainLayout>
+      </ModalProvider>
     </ToastProvider>
   );
 }

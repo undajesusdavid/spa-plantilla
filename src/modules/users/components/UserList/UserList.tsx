@@ -1,5 +1,5 @@
 import { Table, Column } from "../../../../shared/ui/Table/Table";
-import { useUsersList } from "../../hooks/useUsers";
+import { useUsersList  } from "../../hooks/useUsers";
 import { GetUserResponse } from "../../domain/schemas"; // Tu tipo de dominio
 import { Loading } from "../../../../shared/ui/Loading";
 import { ErrorDisplay } from "../../../../shared/ui/ErrorDisplay";
@@ -7,20 +7,51 @@ import styles from "./UserList.module.css";
 import SmallButton from "../../../../shared/ui/SmallButton";
 import { Button } from "../../../../shared/ui/Button";
 import { TrashIcon, PencilIcon } from "../../../../shared/ui/Icons";
+import { useModal } from "../../../../shared/context/ModalContext";
+import { useToast } from "../../../../shared/context/ToastContext";
+
 
 export function UserList() {
   const { data, isLoading, error } = useUsersList();
+
+  const { openModal, closeModal } = useModal();
+  const { addToast, config } = useToast();
+
+  const handleDelete = () => {
+    config("top-center", "500px")
+    addToast("info", "Falta implementar la logica para eliminar usuarios", "Importante" )
+    closeModal();
+  }
+  
+  const confirmDelete = () => {
+    openModal({
+      title: "Confirmación",
+      content: <p>¿Estás seguro de que quieres eliminar el usuario {}</p>,
+      footer: (
+        <>
+          <Button size="sm" variant="ghost" onClick={closeModal}>
+            Cancelar
+          </Button>
+          <Button size="sm" variant="danger" onClick={handleDelete}>
+            Aceptar
+          </Button>
+        </>
+      ),
+    });
+  };
 
   const columns: Column<GetUserResponse>[] = [
     {
       header: "Usuario",
       key: "username",
-      render: (user) => <span className={styles.username}>{user.username}</span>
+      render: (user) => (
+        <span className={styles.username}>{user.username}</span>
+      ),
     },
     {
       header: "Email",
       key: "email",
-      render: (user) => <span className={styles.email}>{user.email}</span>
+      render: (user) => <span className={styles.email}>{user.email}</span>,
     },
     {
       header: "Estado",
@@ -38,19 +69,11 @@ export function UserList() {
       width: "300px",
       render: (user) => (
         <>
-          <Button
-            size="sm"
-            variant="warning"
-            onClick={() => console.log("Edit:", user.id)}
-          >
+          <Button size="sm" variant="warning" onClick={() => null}>
             <PencilIcon />
           </Button>
 
-          <Button
-            size="sm"
-            variant="danger"
-            onClick={() => null}
-          >
+          <Button size="sm" variant="danger" onClick={() => confirmDelete()}>
             <TrashIcon />
           </Button>
         </>

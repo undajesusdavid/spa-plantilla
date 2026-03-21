@@ -28,24 +28,26 @@ export function CreateUserForm() {
       onSuccess: () => {
         targetForm?.reset();
         reset();
-        addToast("success","Registrado Exitosamente");
+        addToast("success", "Registrado Exitosamente");
       },
       onError: () => {
-         addToast("error","No se pudo registrar");
+        if (Object.keys(inputErrors).length === 0) {
+          addToast("error", "No se pudo registrar");
+        }
       },
     });
   };
 
-  // if (isError) {
-  //   return (
-  //     <ErrorDisplay
-  //       title="Error al crear usuario"
-  //       message={error instanceof Error ? error.message : "Error desconocido"}
-  //       onRetry={() => reset()}
-  //       errorCode="AUTH_001"
-  //     />
-  //   );
-  // }
+  if (isError && !Object.keys(inputErrors).length) {
+    return (
+      <ErrorDisplay
+        title="Error al crear usuario"
+        message={error instanceof Error ? error.message : "Error desconocido"}
+        onRetry={() => reset()}
+        errorCode="AUTH_001"
+      />
+    );
+  }
 
   const actions = (
     <>
@@ -54,7 +56,7 @@ export function CreateUserForm() {
         disabled={isPending}
         variant={isPending ? "secondary" : "primary"}
       >
-        {isPending ? "Guardando..." : "Crear Cuenta"}
+        {isPending ? "Registrando..." : "Registrar Usuario"}
       </Button>
     </>
   );

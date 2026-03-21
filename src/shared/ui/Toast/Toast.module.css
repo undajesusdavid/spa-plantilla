@@ -1,129 +1,247 @@
+/* =========================================
+   Contenedor Principal (ToastContainer)
+   ========================================= */
 .toastContainer {
     position: fixed;
-    top: 24px;
-    right: 24px;
-    z-index: 999999;
+    z-index: 1000000;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    /* Un poco más de aire entre ellos */
+    gap: 8px;
     pointer-events: none;
-}
-
-.toast {
-    pointer-events: auto;
-    min-width: 320px;
-    max-width: 420px;
-    padding: 14px 18px;
-    border-radius: 12px;
-    /* Bordes más curvos y modernos */
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-
-    /* Efecto Glassmorphism sutil */
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-
-    /* Sombra multicapa para más realismo */
-    box-shadow:
-        0 4px 6px -1px rgba(0, 0, 0, 0.05),
-        0 10px 25px -5px rgba(0, 0, 0, 0.1);
-
-    /* Borde completo muy fino con acento en la izquierda */
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-left: 5px solid var(--toast-color);
-
-    /* Animación mejorada */
-    animation: springIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    padding: 16px;
+    /* El ancho se controla mediante la variable definida en el Provider */
+    width: var(--container-width, 320px);
+    max-width: 100vw;
     transition: all 0.3s ease;
 }
 
-/* Hover suave para interactividad */
-.toast:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.15);
+/* --- Lógica de Posicionamiento --- */
+/* Arriba */
+.top-right {
+    top: 0;
+    right: 0;
+    align-items: flex-end;
 }
 
-.icon {
+.top-left {
+    top: 0;
+    left: 0;
+    align-items: flex-start;
+}
+
+.top-center {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+}
+
+/* Abajo (usamos reverse para que los nuevos aparezcan sobre los viejos) */
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+}
+
+.bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+/* =========================================
+   El Toast Base (Ultra-Elegante)
+   ========================================= */
+.toast {
+    pointer-events: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    /* Ocupa el ancho del contenedor */
+    padding: 10px 14px;
+
+    /* Estética Glassmorphism refinada */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 10px 20px -5px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.toast:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.12);
+}
+
+/* Micro-línea de acento superior */
+.accentLine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background-color: var(--toast-color);
+    opacity: 0.9;
+}
+
+/* =========================================
+   Contenido y Texto
+   ========================================= */
+.mainContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.iconWrapper {
     flex-shrink: 0;
-    font-size: 1.4rem;
-    /* Un poco más grande */
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--toast-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--toast-color);
-    /* Opcional: un fondo circular muy tenue para el icono */
-    background: var(--toast-bg-soft);
-    padding: 6px;
-    border-radius: 8px;
 }
 
-.content {
+.textWrapper {
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    padding-top: 2px;
+    min-width: 0;
 }
 
 .title {
-    display: block;
+    margin: 0;
+    font-size: 0.88rem;
     font-weight: 700;
-    /* Más peso visual */
-    font-size: 0.9rem;
     color: #0f172a;
-    /* Slate 900 */
-    margin-bottom: 2px;
+    line-height: 1.2;
 }
 
 .message {
-    font-size: 0.85rem;
+    margin: 0;
+    font-size: 0.82rem;
     color: #475569;
-    /* Slate 600 */
-    line-height: 1.5;
+    line-height: 1.4;
     font-weight: 450;
+    /* Truncado elegante */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Variantes con colores más vibrantes y fondos suaves para el icono */
+/* =========================================
+   Botón Cerrar
+   ========================================= */
+.closeBtn {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #94a3b8;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.closeIconWrapper {
+    width: 0.85rem;
+    height: 0.85rem;
+    color: currentColor;
+}
+
+.closeBtn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #1e293b;
+}
+
+/* =========================================
+   Variantes de Color
+   ========================================= */
 .success {
     --toast-color: #10b981;
-    --toast-bg-soft: rgba(16, 185, 129, 0.1);
 }
 
 .error {
     --toast-color: #f43f5e;
-    --toast-bg-soft: rgba(244, 63, 94, 0.1);
 }
 
 .warning {
     --toast-color: #f59e0b;
-    --toast-bg-soft: rgba(245, 158, 11, 0.1);
 }
 
 .info {
     --toast-color: #0ea5e9;
-    --toast-bg-soft: rgba(14, 165, 233, 0.1);
 }
 
-/* Keyframes de entrada con "Spring" (rebote) */
-@keyframes springIn {
-    0% {
-        opacity: 0;
-        transform: translateX(40px) scale(0.9);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
+/* =========================================
+   Animaciones por Posición
+   ========================================= */
+.fadeIn {
+    animation: springIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
 }
 
 .fadeOut {
-    animation: fadeOut 0.3s ease-in forwards;
+    animation: fadeOutSimple 0.25s ease-in forwards;
 }
 
-@keyframes fadeOut {
+@keyframes springIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeOutSimple {
     to {
         opacity: 0;
-        transform: translateX(20px) scale(0.95);
+        transform: scale(0.92);
         filter: blur(4px);
+    }
+}
+
+/* =========================================
+   Ajustes Móviles
+   ========================================= */
+@media (max-width: 500px) {
+    .toastContainer {
+        width: 100% !important;
+        padding: 12px;
+        /* En móvil solemos preferir que aparezcan abajo */
+        bottom: 0 !important;
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
     }
 }

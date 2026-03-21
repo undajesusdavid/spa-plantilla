@@ -1,5 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styles from "./Toast.module.css";
+import {
+  SuccessIcon,
+  ErrorIcon,
+  WarningIcon,
+  InfoIcon,
+  CloseIcon,
+} from "./Icons";
 
 export type ToastType = "success" | "error" | "warning" | "info";
 
@@ -12,11 +19,11 @@ export interface ToastProps {
   onClose: (id: string) => void;
 }
 
-const icons: Record<ToastType, string> = {
-  success: "check_circle",
-  error: "error",
-  warning: "warning",
-  info: "info",
+const iconMap: Record<ToastType, React.ReactNode> = {
+  success: <SuccessIcon size="100%" />,
+  error: <ErrorIcon size="100%" />,
+  warning: <WarningIcon size="100%" />,
+  info: <InfoIcon size="100%" />,
 };
 
 export const Toast: React.FC<ToastProps> = ({
@@ -27,27 +34,46 @@ export const Toast: React.FC<ToastProps> = ({
   duration = 5000,
   onClose,
 }) => {
+  const [isExiting, setIsExiting] = useState(false);
+
+  const handleClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => onClose(id), 250);
+  }, [id, onClose]);
+
   useEffect(() => {
-    const timer = setTimeout(() => onClose(id), duration);
+    const timer = setTimeout(handleClose, duration);
     return () => clearTimeout(timer);
-  }, [id, duration, onClose]);
+  }, [duration, handleClose]);
 
   return (
-    <div className={`${styles.toast} ${styles[type]}`} role="alert">
-      {/* Usando Google Material Symbols o cualquier librería de iconos */}
-      <span className={`material-symbols-outlined ${styles.icon}`}>
-        {icons[type]}
-      </span>
-      <div className={styles.content}>
-        {title && <span className={styles.title}>{title}</span>}
-        <p className={styles.message}>{message}</p>
+    <div
+      className={`
+        ${styles.toast} 
+        ${styles[type]} 
+        ${isExiting ? styles.fadeOut : styles.fadeIn}
+      `}
+      role="alert"
+    >
+      <div className={styles.accentLine} />
+
+      <div className={styles.mainContent}>
+        <div className={styles.iconWrapper}>{iconMap[type]}</div>
+
+        <div className={styles.textWrapper}>
+          {title && <h1 className={styles.title}>{title}</h1>}
+          <p className={styles.message}>{message}</p>
+        </div>
       </div>
+
       <button
         className={styles.closeBtn}
-        onClick={() => onClose(id)}
+        onClick={handleClose}
         aria-label="Cerrar"
       >
-        &times;
+        <div className={styles.closeIconWrapper}>
+          <CloseIcon size="100%" />
+        </div>
       </button>
     </div>
   );

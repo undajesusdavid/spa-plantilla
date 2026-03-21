@@ -3,6 +3,18 @@ import { createPortal } from "react-dom";
 import { Toast, ToastType } from "../ui/Toast";
 import styles from "../ui/Toast/Toast.module.css";
 
+const DEFAULT_POSITION: ToastPosition = "top-center";
+const DEFAULT_WIDTH = "320px";
+
+// Definimos las posiciones posibles
+export type ToastPosition =
+  | "top-right"
+  | "top-left"
+  | "top-center"
+  | "bottom-right"
+  | "bottom-left"
+  | "bottom-center";
+
 interface ToastItem {
   id: string;
   type: ToastType;
@@ -12,6 +24,8 @@ interface ToastItem {
 
 interface ToastContextType {
   addToast: (type: ToastType, message: string, title?: string) => void;
+  // Permitimos configurar la posición y ancho globalmente
+  config: (position: ToastPosition, width?: string) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -21,37 +35,39 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
-  // Función para añadir una notificación con ID único
+  // --- CONFIGURACIÓN POR DEFECTO AQUÍ ---
+  const [position, setPosition] = useState<ToastPosition>(DEFAULT_POSITION);
+  const [customWidth, setCustomWidth] = useState<string>(DEFAULT_WIDTH);
+
   const addToast = useCallback(
     (type: ToastType, message: string, title?: string) => {
-      const id = Math.random().toString(36).substring(2, 9);
+      const id = window.crypto.randomUUID();
       setToasts((prev) => [...prev, { id, type, message, title }]);
     },
     [],
   );
 
-  // Función para eliminar (se pasa al componente Toast para el auto-close)
   const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
-  return (
-    <ToastContext.Provider value={{ addToast }}>
-      {children}
+  // Función para cambiar la configuración en caliente si fuera necesario
+  const config = useCallback((pos: ToastPosition, width?: string) => {
+    setPosition(pos);
+    if (width) setCustomWidth(width);
+  }, []);
 
-      {/* El Portal: Renderiza los toasts al final del <body> */}
+  return (
+    <ToastContext.Provider value={{ addToast, config }}>
+      {children}
       {typeof document !== "undefined" &&
         createPortal(
-          <div className={styles.toastContainer}>
+          <div
+            className={`${styles.toastContainer} ${styles[position]}`}
+            style={{ "--container-width": customWidth } as React.CSSProperties}
+          >
             {toasts.map((t) => (
-              <Toast
-                key={t.id}
-                id={t.id}
-                type={t.type}
-                title={t.title}
-                message={t.message}
-                onClose={removeToast}
-              />
+              <Toast key={t.id} {...t} onClose={removeToast} />
             ))}
           </div>,
           document.body,
@@ -60,11 +76,9 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-// Hook personalizado para usar en tus formularios
 export const useToast = () => {
   const context = useContext(ToastContext);
-  if (!context) {
+  if (!context)
     throw new Error("useToast debe usarse dentro de un ToastProvider");
-  }
   return context;
 };
