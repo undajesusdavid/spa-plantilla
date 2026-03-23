@@ -1,5 +1,4 @@
-
-
+/* --- BASE DEL BOTÓN --- */
 .btn {
     margin: 2px;
     display: inline-flex;
@@ -7,116 +6,142 @@
     justify-content: center;
     padding: 4px 12px;
     font-size: 0.75rem;
-    /* Muy compacto y elegante */
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid transparent;
-    gap: 6px;
+    gap: 8px;
+    /* Espacio entre spinner/icono y texto */
     white-space: nowrap;
+    position: relative;
+    outline: none;
 }
 
-/* Variante Principal: Sólida */
+/* --- VARIANTES DE COLOR --- */
 .primary {
     background-color: #1a1a1a;
     color: #ffffff;
 }
 
-.primary:hover {
+.primary:hover:not(:disabled) {
     background-color: #333333;
     transform: translateY(-1px);
 }
 
-/* Variante Secundaria: Con borde */
 .secondary {
     background-color: #ffffff;
     color: #1a1a1a;
     border-color: #e5e5e5;
 }
 
-.secondary:hover {
+.secondary:hover:not(:disabled) {
     background-color: #fafafa;
     border-color: #d1d1d1;
 }
 
-/* Variante Ghost: Solo texto */
 .ghost {
     background: transparent;
     color: #666;
 }
 
-.ghost:hover {
+.ghost:hover:not(:disabled) {
     background-color: rgba(0, 0, 0, 0.04);
     color: #000;
 }
 
-/* --- NUEVAS VARIANTES SEMÁNTICAS --- */
-
-/* Peligro / Errores (Rojo) */
 .danger {
     background-color: #be123c;
-    /* Rose 700 */
     color: #ffffff;
 }
 
-.danger:hover {
+.danger:hover:not(:disabled) {
     background-color: #9f1239;
     transform: translateY(-1px);
 }
 
-/* Éxito (Verde) */
 .success {
     background-color: #059669;
-    /* Emerald 600 */
     color: #ffffff;
 }
 
-.success:hover {
+.success:hover:not(:disabled) {
     background-color: #047857;
     transform: translateY(-1px);
 }
 
-/* Advertencia (Ámbar/Amarillo) */
 .warning {
     background-color: #d97706;
-    /* Amber 600 */
     color: #ffffff;
 }
 
-.warning:hover {
+.warning:hover:not(:disabled) {
     background-color: #b45309;
     transform: translateY(-1px);
 }
 
-/* Outline Danger (Especial para botones de 'Eliminar' en tablas) */
 .outline-danger {
     background-color: #fff1f2;
     color: #e11d48;
     border-color: #fecdd3;
 }
 
-.outline-danger:hover {
+.outline-danger:hover:not(:disabled) {
     background-color: #ffe4e6;
     border-color: #fb7185;
     color: #be123c;
 }
 
-.btn:active {
+/* --- ESTADOS DE INTERACCIÓN --- */
+.btn:active:not(:disabled) {
     transform: translateY(0);
     opacity: 0.8;
 }
 
 .btn:disabled {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: not-allowed;
-    transform: none;
+    transform: none !important;
+    pointer-events: none;
+    /* Bloquea clics adicionales mientras carga */
 }
 
-/* Escalas de tamaño */
+/* --- LÓGICA DE CARGA (SPINNER) --- */
+.spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    /* Hereda el color del texto del botón */
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Contenedor del contenido interno para alineación perfecta */
+.label {
+    display: inline-flex;
+    align-items: center;
+    gap: inherit;
+    /* Hereda el gap del .btn */
+}
+
+/* --- TAMAÑOS --- */
 .sm {
-    padding: 4px 12px;
-    font-size: 0.75rem;
+    padding: 4px 10px;
+    font-size: 0.7rem;
 }
 
 .md {
@@ -128,7 +153,6 @@
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 8px;
-    /* Un poco más redondo para botones grandes */
 }
 
 .fullWidth {

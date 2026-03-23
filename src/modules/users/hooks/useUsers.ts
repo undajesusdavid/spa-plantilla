@@ -15,6 +15,12 @@ export const useCreateUser = () => {
   });
 };
 
+export const useDeleteUser = () => {
+  return useMutation({
+    mutationFn: (id: string) => usersApi.deleteUser(id),
+  });
+}
+
 export const useUsersList = () => {
   return useQuery({
     queryKey: ['users'],

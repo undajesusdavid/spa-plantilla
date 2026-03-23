@@ -11,32 +11,51 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | "warning"
     | "success"
     | "outline-danger";
-  size?: "sm" | "md" | "lg"; // <-- Manejamos el tamaño aquí
+  size?: "sm" | "md" | "lg";
   icon?: ReactNode;
   fullWidth?: boolean;
+  isLoading?: boolean; // <-- Nueva prop
+  loadingText?: string; // <-- Opcional: para cambiar el texto al cargar
 }
 
 const Button: React.FC<ButtonProps> = ({
   children,
   variant = "primary",
-  size = "md", // Por defecto mediano
+  size = "md",
   icon,
   fullWidth = false,
   className = "",
+  isLoading = false, // Por defecto no está cargando
+  loadingText,
+  disabled,
   ...props
 }) => {
   const buttonClass = [
     styles.btn,
     styles[variant],
-    styles[size], // Clase para el tamaño
+    styles[size],
     fullWidth ? styles.fullWidth : "",
+    isLoading ? styles.loading : "", // Clase para estados visuales de carga
     className,
   ].join(" ");
 
   return (
-    <button className={buttonClass} {...props}>
-      {icon && <span className={styles.icon}>{icon}</span>}
-      {children}
+    <button
+      className={buttonClass}
+      // Se deshabilita si isLoading es true O si viene la prop disabled manualmente
+      disabled={isLoading || disabled}
+      {...props}
+    >
+      {/* Si está cargando, podemos mostrar un spinner o nada si hay loadingText */}
+      {isLoading && <span className={styles.spinner}></span>}
+
+      {/* Mostramos el icono solo si NO está cargando */}
+      {!isLoading && icon && <span className={styles.icon}>{icon}</span>}
+
+      {/* Si hay loadingText y está cargando, lo mostramos, si no, los hijos normales */}
+      <span className={styles.label}>
+        {isLoading && loadingText ? loadingText : children}
+      </span>
     </button>
   );
 };

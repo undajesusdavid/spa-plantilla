@@ -10,6 +10,12 @@ export const usersApi = {
     const { data } = await apiClient.post('/users/create', body);
     return data;
   },
+
+  deleteUser: async (id: string) => {
+    const { data } = await apiClient.delete('/users/delete/'+id);
+    return data;
+  },
+  
   listUsers: async () => {
     const { data } = await apiClient.get('/users');
     return data;

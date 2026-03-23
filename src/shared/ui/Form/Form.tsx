@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import styles from "./Form.module.css";
 
 // Definimos un tipo genérico para que el onSubmit sea tipado desde afuera
@@ -7,37 +8,35 @@ interface FormProps<T> {
   onSubmit: (data: T, e: React.FormEvent<HTMLFormElement>) => void;
   title?: string;
   actions?: React.ReactNode;
+  id?: string; // Añadimos el ID opcional
 }
 
-export function Form<T = Record<string, any>>({
-  children,
-  onSubmit,
-  title,
-  actions,
-}: FormProps<T>) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
 
-    // Creamos el objeto manualmente para evitar problemas de tipos con entries()
-    const data = {} as T;
+export const Form = forwardRef<HTMLFormElement, FormProps<any>>(
+  ({ children, onSubmit, title, actions, id }, ref) => {
+    
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const data = {} as any;
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
 
-    formData.forEach((value, key) => {
-      // Esto asegura que captures todos los campos con 'name'
-      (data as any)[key] = value;
-    });
+      onSubmit(data, e);
+    };
 
-    // Enviamos los datos y el evento para poder hacer el reset() después
-    onSubmit(data, e);
-  };
-
-  return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      {title && <h2 className={styles.formTitle}>{title}</h2>}
-      <div className={styles.content}>{children}</div>
-      {actions && <div className={styles.actions}>{actions}</div>}
-    </form>
-  );
-}
+    return (
+      <form
+        ref={ref} // <--- Aquí conectamos el "control remoto"
+        id={id}
+        onSubmit={handleSubmit}
+        className={styles.form}
+      >
+        {title && <h2>{title}</h2>}
+        <div>{children}</div>
+      </form>
+    );
+  },
+);
