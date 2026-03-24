@@ -10,7 +10,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | "danger"
     | "warning"
     | "success"
-    | "outline-danger";
+    | "outline-danger"
+    | "info";
   size?: "sm" | "md" | "lg";
   icon?: ReactNode;
   fullWidth?: boolean;

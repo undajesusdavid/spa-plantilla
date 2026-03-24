@@ -60,6 +60,16 @@
     transform: translateY(-1px);
 }
 
+.info {
+    background-color: #0683d6;
+    color: #ffffff;
+}
+
+.info:hover:not(:disabled) {
+    background-color: #055bbe;
+    transform: translateY(-1px);
+}
+
 .success {
     background-color: #059669;
     color: #ffffff;

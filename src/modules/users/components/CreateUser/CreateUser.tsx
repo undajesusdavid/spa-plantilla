@@ -2,7 +2,7 @@ import { ErrorDisplay } from "../../../../shared/ui/ErrorDisplay";
 import { Button } from "../../../../shared/ui/Button";
 import { ButtonContainer } from "../../../../shared/ui/ButtonContainer";
 import { CreateUserForm } from "./CreateUserForm";
-import { useCreateUserForm } from "../../hooks/useCreateUserForm";
+import { useCreateUserForm } from "./hooks/useCreateUserForm";
 
 export function CreateUser() {
   const form = useCreateUserForm();
@@ -22,13 +22,13 @@ export function CreateUser() {
 
   return (
     <>
-      <CreateUserForm {...form} />
+      <CreateUserForm
+        handleSave={form.handleSave}
+        inputErrors={form.inputErrors}
+        formRef={form.formRef}
+      />
       <ButtonContainer align="center">
-        <Button
-          onClick={executeSubmit}
-          disabled={isPending}
-          variant="primary"
-        >
+        <Button onClick={executeSubmit} disabled={isPending} variant="primary">
           {isPending ? "Registrando..." : "Registrar Usuario"}
         </Button>
       </ButtonContainer>

@@ -1,11 +1,13 @@
+import z from 'zod';
 import { apiClient } from '../../../api/axios-client';
-import { AuthUserRequest, AuthUserDtoResponse, CreateUserRequest } from '../domain/schemas';
+import { AuthUserRequest, AuthUserDtoResponse, CreateUserRequest, GetUserDtoResponse } from '../domain/schemas';
 
 export const usersApi = {
   login: async (body: AuthUserRequest) => {
     const { data } = await apiClient.post('/users/login', body);
     return AuthUserDtoResponse.parse(data);
   },
+  
   createUser: async (body: CreateUserRequest) => {
     const { data } = await apiClient.post('/users/create', body);
     return data;
@@ -18,6 +20,6 @@ export const usersApi = {
   
   listUsers: async () => {
     const { data } = await apiClient.get('/users');
-    return data;
+    return z.array(GetUserDtoResponse).parse(data);
   },
 };

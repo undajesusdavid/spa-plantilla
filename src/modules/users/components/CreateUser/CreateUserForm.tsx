@@ -1,10 +1,22 @@
 import { FieldGroup } from "../../../../shared/ui/FieldGroup";
 import { Input } from "../../../../shared/ui/Input";
 import { Form } from "../../../../shared/ui/Form";
-import { CreateUserFormProps } from "../../types/typesUserCreate";
+import { CreateUserRequest } from "../../domain/schemas";
 
+export interface CreateUserFormProps {
+  formRef: React.RefObject<HTMLFormElement>;
+  inputErrors: Partial<Record<keyof CreateUserRequest, string>>;
+  handleSave: (
+    data: CreateUserRequest,
+    e?: React.FormEvent<HTMLFormElement>,
+  ) => void;
+}
 
-export function CreateUserForm({ formRef, handleSave, inputErrors }: CreateUserFormProps) {
+export function CreateUserForm({
+  formRef,
+  inputErrors,
+  handleSave
+}: CreateUserFormProps) {
   return (
     <Form ref={formRef} onSubmit={handleSave}>
       <FieldGroup
