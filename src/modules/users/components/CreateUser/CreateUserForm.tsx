@@ -2,6 +2,8 @@ import { FieldGroup } from "../../../../shared/ui/FieldGroup";
 import { Input } from "../../../../shared/ui/Input";
 import { Form } from "../../../../shared/ui/Form";
 import { CreateUserRequest } from "../../domain/schemas";
+import { useState } from "react";
+
 
 export interface CreateUserFormProps {
   formRef: React.RefObject<HTMLFormElement>;
@@ -15,10 +17,15 @@ export interface CreateUserFormProps {
 export function CreateUserForm({
   formRef,
   inputErrors,
-  handleSave
+  handleSave,
 }: CreateUserFormProps) {
+  
+  const validations = () => {
+    return true;
+  };
+
   return (
-    <Form ref={formRef} onSubmit={handleSave}>
+    <Form ref={formRef} onSubmit={handleSave} isValid={validations}>
       <FieldGroup
         title="Información Personal"
         orientation="vertical"
@@ -31,6 +38,7 @@ export function CreateUserForm({
           required
           error={inputErrors.username}
         />
+
         <Input
           label="Contraseña"
           name="password"
@@ -38,6 +46,15 @@ export function CreateUserForm({
           required
           error={inputErrors.password}
         />
+
+        <Input
+          label="Confirmar Contraseña"
+          name="passwordConfirm"
+          type="password"
+          required
+          error={inputErrors.passwordConfirm}
+        />
+
         <Input
           label="Email"
           name="email"

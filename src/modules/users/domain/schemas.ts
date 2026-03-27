@@ -14,6 +14,7 @@ export const AuthUserDtoResponse = z.object({
 export const CreateUserRequestDto = z.object({
   username: z.string().min(2),
   password: z.string().min(6),
+  passwordConfirm: z.string().min(6),
   email: z.string().email(),
 });
 

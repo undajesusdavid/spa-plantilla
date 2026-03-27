@@ -8,14 +8,12 @@ interface FormProps<T> {
   onSubmit: (data: T, e: React.FormEvent<HTMLFormElement>) => void;
   title?: string;
   actions?: React.ReactNode;
+  isValid: () => boolean;
   id?: string; // Añadimos el ID opcional
 }
 
-
-
 export const Form = forwardRef<HTMLFormElement, FormProps<any>>(
-  ({ children, onSubmit, title, actions, id }, ref) => {
-    
+  ({ children, onSubmit, title, actions, isValid, id }, ref) => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
@@ -24,7 +22,9 @@ export const Form = forwardRef<HTMLFormElement, FormProps<any>>(
         data[key] = value;
       });
 
-      onSubmit(data, e);
+      if (isValid()) {
+        onSubmit(data, e);
+      }
     };
 
     return (
