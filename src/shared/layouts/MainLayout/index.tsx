@@ -1,23 +1,23 @@
 import { ReactNode} from "react";
 import styles from "./MainLayout.module.css";
-
 import Breadcrumbs from "./breadcrumbs";
 import { HeaderLayout } from "./header/HeaderLayout";
-import { MenuLayout } from "./menu/MenuLayout";
-import { HeaderItems, MenuItem } from "../TypeLayoutProps";
+import { SideBarLayout } from "./sidebar/SideBarLayout";
+import { useMainLayout } from "./useMainLayout";
 
 interface MainLayoutProps {
   children: ReactNode;
-  menuItems: MenuItem[];
-  headerItems: HeaderItems;
 }
 
-export function MainLayout({ children, menuItems, headerItems }: MainLayoutProps) {
+export function MainLayout({ children }: MainLayoutProps) {
+
+  const { HeaderConfig, SideBarConfig } = useMainLayout();
+
   return (
     <div className={styles.rootLayout}>
-      <HeaderLayout headerItems={headerItems}/>
+      <HeaderLayout config={HeaderConfig} />
       <section className={styles.appMain}>
-        <MenuLayout items={menuItems} />
+        <SideBarLayout config={SideBarConfig} />
         <main className={styles.mainContent}>
           <Breadcrumbs homeLabel="Home" />
           {children}

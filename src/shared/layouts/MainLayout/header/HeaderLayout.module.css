@@ -1,46 +1,78 @@
 /* Header con efecto Blur */
-.header { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    background: rgba(255, 255, 255, 0.8); 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border-color); 
-    padding: 0.5rem 1.25rem; 
-    position: sticky; 
-    top: 0; 
-    z-index: 100; 
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.5rem 1.25rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.brand { display: flex; align-items: center; gap: 0.6rem; }
-.logo { font-size: 1.4rem; }
-.title { font-weight: 700; font-size: 1rem; color: #1e293b; }
-.subtitle { color: var(--text-muted); font-size: 0.65rem; font-weight: 700; }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.logo {
+    padding: 0px;
+}
+
+.logoImage {
+    width: 200px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.65rem;
+    font-weight: 700;
+}
 
 /* Navegación Superior */
-.nav { display: flex; gap: 0.5rem; }
-.navLink { 
-    color: var(--text-muted); 
-    text-decoration: none; 
-    padding: 0.4rem 0.7rem; 
-    font-size: 0.85rem; 
+.nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.navLink {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
     font-weight: 500;
     border-radius: 6px;
     transition: all 0.2s;
 }
 
 .navLinkActive {
-    background:  rgb(0, 126, 243); 
-    color: white; 
-    text-decoration: none; 
-    padding: 0.4rem 0.7rem; 
-    font-size: 0.85rem; 
+    background: rgb(0, 126, 243);
+    color: white;
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
     font-weight: 500;
     border-radius: 6px;
     transition: all 0.2s;
 }
 
-.navLink:hover { 
+.navLink:hover {
     background: #f1f5f9;
     color: var(--text-main);
+}
+
+.navGroup {
+    display: flex;
+    gap: 0.5rem;
 }

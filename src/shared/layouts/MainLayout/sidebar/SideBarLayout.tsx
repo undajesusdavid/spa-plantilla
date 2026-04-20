@@ -1,15 +1,15 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import styles from "./MenuLayout.module.css";
-import { MenuItem } from "../../TypeLayoutProps";
+import styles from "./SideBarLayout.module.css";
+import { SideBarData } from "../MainLayoutProps";
 
-export function MenuLayout({ items }: { items: MenuItem[] }) {
+export function SideBarLayout({ config }: { config: SideBarData }) {
   const { pathname } = useLocation();
   const [openModule, setOpenModule] = useState<string | null>(null);
 
   // Lógica para abrir el módulo si alguna de sus sub-rutas está activa
   useEffect(() => {
-    const activeModule = items.find((module) =>
+    const activeModule = config.menuItems.find((module) =>
       module.links.some((link) => {
         // Si el link es la raíz '/', comparamos exacto, si no, usamos startsWith
         return link.to === "/"
@@ -18,12 +18,12 @@ export function MenuLayout({ items }: { items: MenuItem[] }) {
       }),
     );
     if (activeModule) setOpenModule(activeModule.title);
-  }, [pathname, items]);
+  }, [pathname, config.menuItems]);
 
   return (
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
-        {items.map((module) => {
+        {config.menuItems.map((module) => {
           const isOpen = openModule === module.title;
 
           // El módulo se resalta si estamos dentro de cualquiera de sus rutas
