@@ -1,8 +1,8 @@
 // Tipos
 import { HeaderData, SideBarData } from "./MainLayoutProps";
 // Constantes
-import { HEADER_LINKS } from "@constants/layout.header-links";
-import { MENU_ITEMS } from "@constants/layout.menu-items";
+import { HEADER_LINKS } from "@src/shared/config/layout.header-links";
+import { MENU_ITEMS } from "@src/shared/config/layout.menu-items";
 // Hooks
 import { useAuthStore } from "@modules/users";
 

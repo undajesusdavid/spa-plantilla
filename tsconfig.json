@@ -30,7 +30,7 @@
       "@context/*": ["./src/shared/context/*"],
       "@layouts/*": ["./src/shared/layouts/*"],
       "@layouts": ["./src/shared/layouts/index.ts"],
-      "@constants/*": ["./src/shared/constants/*"],
+      "@config/*": ["./src/shared/config/*"],
       "@api/*": ["./src/api/*"],
       "@api": ["./src/api/index.ts"],
       "@assets/*": ["./src/assets/*"],
