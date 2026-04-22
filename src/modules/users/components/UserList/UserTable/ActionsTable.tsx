@@ -1,8 +1,8 @@
-import { Button } from "@ui-base/buttons/Button";
-import { PencilIcon, TrashIcon, ViewIcon } from "@ui-base/Icons";
+import { Button } from "@ui-base/buttons/button";
+import { PencilIcon, TrashIcon, ViewIcon } from "@ui-base/icons";
 import { User } from "@modules/users/types";
 import { useActionsTable } from "../hooks/useActionsTable";
-import { ConfirmDelete } from "@ui-modules/overlay/ConfirmDelete";
+import { ConfirmDelete } from "@ui-modules/overlay/confirm-delete";
 
 interface ActionsTableProps {
   user: User;

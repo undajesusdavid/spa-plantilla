@@ -1,6 +1,6 @@
-import { FieldGroup } from "@ui-modules/form-groups/FieldGroup";
-import { Input } from "@ui-base/inputs/Input";
-import { Form } from "@ui-base/Form";
+import { FieldGroup } from "@ui-modules/form-groups/field-group";
+import { Input } from "@ui-base/inputs/input";
+import { Form } from "@ui-base/form";
 import { CreateUserRequest } from "@modules/users/domain/schemas";
 
 

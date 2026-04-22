@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from "@ui-base/buttons/Button";
+import { Button } from "@ui-base/buttons/button";
 import { useGetActaPdf } from '../hooks/useLoans';
 
 export function LoanActaButton() {

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@modules/users/store/auth.store";
 import { useLogin } from "@modules/users/hooks/useUsers";
 import { AuthUserRequestDto } from "@modules/users/domain/schemas";
-import { BigButton } from "@ui-base/buttons/BigButton";
-import { Input } from "@ui-base/inputs/Input";
+import { BigButton } from "@ui-base/buttons/big-button";
+import { Input } from "@ui-base/inputs/input";
 import styles from "./LoginForm.module.css";
 
 export function LoginForm() {
