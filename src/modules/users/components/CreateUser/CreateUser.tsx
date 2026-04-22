@@ -1,6 +1,6 @@
-import { ErrorDisplay } from "../../../../shared/ui/ErrorDisplay";
-import { Button } from "../../../../shared/ui/Button";
-import { ButtonContainer } from "../../../../shared/ui/ButtonContainer";
+import { ErrorDisplay } from "../../../../shared/components/data-display/ErrorDisplay";
+import { Button } from "../../../../shared/ui/buttons/Button";
+import { ButtonContainer } from "../../../../shared/ui/buttons/ButtonContainer";
 import { CreateUserForm } from "./CreateUserForm";
 import { useCreateUserForm } from "./hooks/useCreateUserForm";
 

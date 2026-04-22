@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { Button } from '../../../shared/ui/BigButton';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '../../../shared/ui/buttons/BigButton';
+import { Input } from '../../../shared/ui/inputs/Input';
 import { useRequestLoan } from '../hooks/useLoans';
 import styles from './LoanRequestForm.module.css';
 

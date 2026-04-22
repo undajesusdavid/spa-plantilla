@@ -1,0 +1,14 @@
+
+inputs: "Buttons, Selects, Checkboxes",Todo lo que recibe datos del usuario está aquí.
+
+data-display: "Tables, Lists, Badges, Cards",Todo lo que muestra información vive aquí.
+
+feedback: "Spinners, Toasts, Alerts",Todo lo que informa del estado del sistema.
+
+overlay: "Modals, Drawers, Tooltips",Componentes que flotan sobre la interfaz.
+
+layout: "Containers, Grids, Spacers",Componentes que solo dan estructura y espacio.
+
+navigation: "Tabs, Barra de opciones, Action Bar, Breadcrumbs, Navbars etc. su propósito principal es mover al usuario de un lugar a otro o cambiar la vista actual del contenido."
+
+form-groups: "TextField, MatchPassword, su proposito es agrupar componentes inputs para formulario o evio de datos"

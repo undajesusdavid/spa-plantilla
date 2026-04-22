@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styles from "./HeaderLayout.module.css";
-import SmallButton from "../../../ui/SmallButton";
+import SmallButton from "../../../ui/buttons/SmallButton";
 import { HeaderData } from "../MainLayoutProps";
 
 

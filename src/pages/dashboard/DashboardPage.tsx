@@ -1,5 +1,5 @@
-import { NavBar } from "../../shared/ui/NavBar";
-import SmallButton from "../../shared/ui/SmallButton";
+import { NavBar } from "../../shared/components/navigation/NavBar";
+import SmallButton from "../../shared/ui/buttons/SmallButton";
 
 export default function DashboardPage() {
   const myLinks = [

@@ -1,8 +1,8 @@
-import { Button } from "../../../../../shared/ui/Button";
+import { Button } from "../../../../../shared/ui/buttons/Button";
 import { PencilIcon, TrashIcon, ViewIcon } from "../../../../../shared/ui/Icons";
 import { User } from "../../../types";
 import { useActionsTable } from "../hooks/useActionsTable";
-import { ConfirmDelete } from "../../../../../shared/components/ConfirmDelete";
+import { ConfirmDelete } from "../../../../../shared/components/overlay/ConfirmDelete";
 
 interface ActionsTableProps {
   user: User;

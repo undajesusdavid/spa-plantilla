@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { Toast, ToastType } from "../ui/Toast";
-import styles from "../ui/Toast/Toast.module.css";
+import { Toast, ToastType } from "../components/overlay/Toast";
+import styles from "../components/overlay/Toast/Toast.module.css";
 
 const DEFAULT_POSITION: ToastPosition = "top-center";
 const DEFAULT_WIDTH = "320px";

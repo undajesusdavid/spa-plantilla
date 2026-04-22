@@ -1,8 +1,7 @@
-import { FieldGroup } from "../../../../shared/ui/FieldGroup";
-import { Input } from "../../../../shared/ui/Input";
+import { FieldGroup } from "../../../../shared/components/form-groups/FieldGroup";
+import { Input } from "../../../../shared/ui/inputs/Input";
 import { Form } from "../../../../shared/ui/Form";
 import { CreateUserRequest } from "../../domain/schemas";
-import { useState } from "react";
 
 
 export interface CreateUserFormProps {

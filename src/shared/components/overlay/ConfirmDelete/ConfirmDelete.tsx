@@ -1,6 +1,6 @@
 // src/shared/components/ConfirmDelete/ConfirmDelete.tsx
-import { useModal } from "../../context/ModalContext";
-import { Button } from "../../ui/Button";
+import { useModal } from "../../../context/ModalContext";
+import { Button } from "../../../ui/buttons/Button";
 
 interface ConfirmDeleteProps {
   title?: string;
