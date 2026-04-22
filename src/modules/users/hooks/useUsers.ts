@@ -9,6 +9,14 @@ export const useLogin = (onSuccess: () => void) => {
   });
 };
 
+export const useMyPermissions = (onSuccess: () => void) => {
+  return useMutation({
+    mutationFn: (body: null) => usersApi.myPermissions(body),
+    onSuccess,
+  });
+};
+
+
 export const useCreateUser = () => {
   return useMutation({
     mutationFn: (body: CreateUserRequest) => usersApi.createUser(body),

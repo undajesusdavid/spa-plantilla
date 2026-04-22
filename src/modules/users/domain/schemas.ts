@@ -1,5 +1,10 @@
 import { z } from 'zod';
 
+export const MyPermissionsResponse = z.object({
+  permissions: z.string().array(),
+  roles: z.string().array(),
+});
+
 export const AuthUserRequestDto = z.object({
   username: z.string().min(2),
   password: z.string().min(6),
@@ -31,6 +36,7 @@ export const UpdateUserRequestDto = z.object({
   active: z.boolean().optional(),
 });
 
+export type MyPermissionsResponse = z.infer<typeof MyPermissionsResponse>;
 export type AuthUserRequest = z.infer<typeof AuthUserRequestDto>;
 export type AuthUserResponse = z.infer<typeof AuthUserDtoResponse>;
 export type CreateUserRequest = z.infer<typeof CreateUserRequestDto>;

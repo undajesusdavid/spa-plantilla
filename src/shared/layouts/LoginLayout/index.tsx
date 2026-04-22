@@ -1,15 +1,11 @@
-import { Navigate } from "react-router";
+import { Outlet } from "react-router";
 import styles from "./LoginLayout.module.css";
 import { useLoginLayout } from "./useLoginLayout";
 
 
-export function LoginLayout({children}: {children: React.ReactNode}) {
-    const { config } = useLoginLayout();
-
-    if (config.token) {
-        return <Navigate to="/dashboard" replace />;
-    }
-
+export function LoginLayout() {
+  const { config } = useLoginLayout();
+  
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.loginCard}>
@@ -24,7 +20,7 @@ export function LoginLayout({children}: {children: React.ReactNode}) {
           </p>
         </header>
 
-        <div className={styles.formContainer}>{children}</div>
+        <div className={styles.formContainer}><Outlet /></div>
 
         <footer style={{ marginTop: "2.5rem" }}>
           <p style={{ fontSize: "0.75rem", color: "#94a3b8", fontWeight: 500 }}>

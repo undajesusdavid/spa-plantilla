@@ -1,22 +1,13 @@
-import { MainLayout } from "./shared/layouts/MainLayout";
-import { PrivateRoutes, PublicRoutes } from "./routes";
-import { useAuthStore } from "./modules/users";
 import { ToastProvider } from "./shared/context/ToastContext";
 import { ModalProvider } from "./shared/context/ModalContext";
+import { router } from "./routes/router";
+import { RouterProvider } from "react-router-dom";
 
 export default function App() {
-  const { token } = useAuthStore();
-
   return (
     <ToastProvider>
       <ModalProvider>
-        {token ? (
-          <MainLayout>
-            <PrivateRoutes />
-          </MainLayout>
-        ) : (
-          <PublicRoutes />
-        )}
+        <RouterProvider router={router} />
       </ModalProvider>
     </ToastProvider>
   );
