@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { Modal } from "../components/overlay/Modal/Modal";
+import { Modal } from "@ui-modules/overlay/Modal";
 
 interface ModalOptions {
   title: string;

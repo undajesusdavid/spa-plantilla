@@ -1,6 +1,6 @@
-import { useUsersList } from "../../hooks/useUsers";
-import { Loading } from "../../../../shared/ui/feedback/Loading";
-import { ErrorDisplay } from "../../../../shared/components/data-display/ErrorDisplay";
+import { useUsersList } from "@modules/users/hooks/useUsers";
+import { Loading } from "@ui-base/feedback/Loading";
+import { ErrorDisplay } from "@ui-modules/data-display/ErrorDisplay";
 import { UserTable } from "./UserTable/UserTable";
 
 export function UserList() {

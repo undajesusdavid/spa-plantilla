@@ -1,16 +1,18 @@
 // Tipos
 import { HeaderData, SideBarData } from "./MainLayoutProps";
 // Constantes
-import { HEADER_LINKS } from "../../constants/layout.header-links";
-import { MENU_ITEMS } from "../../constants/layout.menu-items";
+import { HEADER_LINKS } from "@constants/layout.header-links";
+import { MENU_ITEMS } from "@constants/layout.menu-items";
 // Hooks
-import { useAuthStore } from "../../../modules/users";
+import { useAuthStore } from "@modules/users";
 
 //imagenes
-import logo from '@/assets/logotipo.png';
+import logo from '@assets/logotipo.png';
+import { useNavigate } from "react-router";
 
 export function useMainLayout() {
     const { logout, username } = useAuthStore();
+    const navigate = useNavigate();
 
     // Configuración del Header
     const HeaderConfig: HeaderData = {
@@ -20,7 +22,10 @@ export function useMainLayout() {
             username: username || "Usuario",
             avatarUrl: undefined, // Aquí podrías agregar la URL del avatar si la tienes
         },
-        onLogout: logout,
+        onLogout: () => {
+            logout();
+            navigate("/login", { replace: true });
+        },
         links: HEADER_LINKS,
     };
 

@@ -1,4 +1,4 @@
-import { apiClient } from '../../../api/axios-client';
+import { apiClient } from '@api/axios-client';
 import { CreateBoxBodyType } from '../domain/schemas';
 
 export const inventoryApi = {

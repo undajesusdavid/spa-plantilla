@@ -19,7 +19,23 @@
     
     /* Configuración para Alias @ */
     "paths": {
-      "@/*": ["./src/*"]
+      "@src/*": ["./src/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@modules": ["./src/modules/index.ts"],
+      "@pages/*": ["./src/pages/*"],
+      "@hooks-ui/*": ["./src/shared/hooks-ui/*"],
+      "@store-ui/*": ["./src/shared/store-ui/*"],
+      "@ui-base/*": ["./src/shared/ui/base/*"],
+      "@ui-modules/*": ["./src/shared/ui/modules/*"],
+      "@context/*": ["./src/shared/context/*"],
+      "@layouts/*": ["./src/shared/layouts/*"],
+      "@layouts": ["./src/shared/layouts/index.ts"],
+      "@constants/*": ["./src/shared/constants/*"],
+      "@api/*": ["./src/api/*"],
+      "@api": ["./src/api/index.ts"],
+      "@assets/*": ["./src/assets/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@routes": ["./src/routes/index.ts"],
     }
   },
   "include": ["src"],

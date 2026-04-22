@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useDeleteUser } from "../../../hooks/useUsers";
-import { useModal } from "../../../../../shared/context/ModalContext";
-import { useToast } from "../../../../../shared/context/ToastContext";
+import { useDeleteUser } from "@modules/users/hooks/useUsers";
+import { useModal } from "@context/ModalContext";
+import { useToast } from "@context/ToastContext";
 
 export function useActionsTable() {
     const queryClient = useQueryClient();

@@ -1,7 +1,7 @@
-import { useCreateUser } from "../../../hooks/useUsers";
-import { useFormMutation } from "../../../../../shared/hooks/useFormMutation";
+import { useCreateUser } from "@modules/users/hooks/useUsers";
+import { useFormMutation } from "@hooks-ui/useFormMutation";
 import { useQueryClient } from "@tanstack/react-query";
-import { UserInputs } from "../../../types/user.types";
+import { UserInputs } from "@modules/users/types/user.types";
 
 export function useCreateUserForm() {
   const queryClient = useQueryClient();

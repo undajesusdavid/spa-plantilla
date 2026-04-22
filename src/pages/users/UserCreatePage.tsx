@@ -1,4 +1,4 @@
-import { CreateUser } from "../../modules/users";
+import { CreateUser } from "@modules/users";
 import Page from "../Page";
 
 export default function UserCreatePage() {

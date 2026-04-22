@@ -1,40 +1,31 @@
-import { LoginForm } from "@/modules/users/components/LoginForm/LoginForm";
-import DashboardPage from "@/pages/dashboard/DashboardPage";
-import { usersRouter } from "@/routes/users-router";
-import { ProtectedRoute } from "@/routes/guards/protected-route";
-import { LoginLayout } from "@/shared/layouts/LoginLayout";
-import { MainLayout } from "@/shared/layouts/MainLayout";
-import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
+import { LoginForm } from "@modules/users";
+import DashboardPage from "@pages/dashboard/DashboardPage";
+import { UserRouter } from "@src/routes/user-router";
+import { LoginLayout, MainLayout } from "@layouts";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import { AccessLoginGuard, AccessSystemGuard } from "./loaders";
 
 export const router = createBrowserRouter([
-  // 1. RUTAS PÚBLICAS
-  // LoginLayout
   {
     path: "/",
-    element: <LoginLayout />,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="/login" replace />
-      },
-      { path: "login", element: <LoginForm /> },
-    ],
+    element: <Navigate to="/login" replace />,
   },
 
-  // 2. RUTAS PRIVADAS
-  //MainLayout
   {
-    element: <ProtectedRoute />,
+    path: "/login",
+    element: <LoginLayout />,
+    loader: AccessLoginGuard,
+    children: [{ index: true, element: <LoginForm /> }],
+  },
+
+  {
+    element: <MainLayout />,
+    loader: AccessSystemGuard,
     children: [
-      {
-        element: <MainLayout />,
-        children: [
-          // NOTA: Quitamos los "/" iniciales para que sean relativos al padre
-          { path: "dashboard", element: <DashboardPage /> },
-          { path: "profile", element: <div>Mi Perfil de Usuario</div> },
-          { path: "users", children: usersRouter },
-        ],
-      },
+      // NOTA: Quitamos los "/" iniciales para que sean relativos al padre
+      { path: "dashboard", element: <DashboardPage /> },
+      { path: "profile", element: <div>Mi Perfil de Usuario</div> },
+      { path: "users", children: UserRouter },
     ],
   },
 

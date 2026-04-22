@@ -1,6 +1,6 @@
-import { useAuthStore } from "@/modules/users";
+import { useAuthStore } from "@modules/users";
 import { LoginConfig } from "./LoginLayoutProps";
-import logo from "@/assets/isotipo.png";
+import logo from "@src/assets/isotipo.png";
 
 export function useLoginLayout() {
 

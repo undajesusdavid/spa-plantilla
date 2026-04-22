@@ -1,7 +1,7 @@
 import { useRef, useCallback } from "react";
 import { UseMutateFunction } from "@tanstack/react-query";
-import { useToast } from "../../shared/context/ToastContext";
-import { useApiErrors } from "../../api/hooks/useApiErrors";
+import { useToast } from "@context/ToastContext";
+import { useApiErrors } from "@api";
 
 interface UseFormMutationOptions<TData, TError, TVariables> {
     mutation: {

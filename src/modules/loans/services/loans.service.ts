@@ -1,4 +1,4 @@
-import { apiClient } from '../../../api/axios-client';
+import { apiClient } from '@api/axios-client';
 import { RequestLoanInput, ApproveLoanInput } from '../domain/schemas';
 
 export const loansApi = {

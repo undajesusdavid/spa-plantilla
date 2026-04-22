@@ -1,10 +1,10 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/auth.store";
-import { useLogin } from "../../hooks/useUsers";
-import { AuthUserRequestDto } from "../../domain/schemas";
-import { BigButton } from "../../../../shared/ui/buttons/BigButton";
-import { Input } from "../../../../shared/ui/inputs/Input";
+import { useAuthStore } from "@modules/users/store/auth.store";
+import { useLogin } from "@modules/users/hooks/useUsers";
+import { AuthUserRequestDto } from "@modules/users/domain/schemas";
+import { BigButton } from "@ui-base/buttons/BigButton";
+import { Input } from "@ui-base/inputs/Input";
 import styles from "./LoginForm.module.css";
 
 export function LoginForm() {

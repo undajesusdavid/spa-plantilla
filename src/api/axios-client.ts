@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAuthToken, logout } from '../modules/users/store/auth.store';
+import { getAuthToken, logout } from '@modules/users';
 
 export const apiClient = axios.create({
   baseURL: 'http://localhost:3000/api/v1',

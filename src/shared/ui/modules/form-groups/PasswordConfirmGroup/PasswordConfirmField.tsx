@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from "../../../ui/inputs/Input";
+import { Input } from "@ui-base/inputs/Input";
 
 interface PasswordConfirmFieldProps {
   label?: string;

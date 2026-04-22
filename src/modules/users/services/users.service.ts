@@ -1,5 +1,5 @@
 import z from 'zod';
-import { apiClient } from '../../../api/axios-client';
+import { apiClient } from '@api/axios-client';
 import { AuthUserRequest, AuthUserDtoResponse, CreateUserRequest, GetUserDtoResponse, MyPermissionsResponse } from '../domain/schemas';
 
 export const usersApi = {
