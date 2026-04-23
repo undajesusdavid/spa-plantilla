@@ -1,4 +1,4 @@
-import { UserList } from "@features";
+import { UserList } from "@entities";
 import Page from "../Page";
 
 export default function UserListPage() {

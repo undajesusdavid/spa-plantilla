@@ -1,4 +1,4 @@
-import { LoginForm } from "@features";
+import { LoginForm } from "@entities";
 import DashboardPage from "@pages/dashboard/DashboardPage";
 import { UserRouter } from "./user-router";
 import { LoginLayout, MainLayout } from "@layouts";

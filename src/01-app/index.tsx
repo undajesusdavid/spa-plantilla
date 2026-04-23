@@ -1,7 +1,8 @@
+import { RouterProvider } from "react-router-dom";
 import { ToastProvider } from "@context/ToastContext";
 import { ModalProvider } from "@context/ModalContext";
 import { router } from "@routes";
-import { RouterProvider } from "react-router-dom";
+import "./styles/main.css";
 
 const App = () => {
   return (

@@ -1,4 +1,4 @@
-import { CreateUserRequest, GetUserResponse } from "../domain/schemas";
+import { CreateUserRequest, GetUserResponse } from "./schemas";
 
 export type User = GetUserResponse;
 export type Users = GetUserResponse[]

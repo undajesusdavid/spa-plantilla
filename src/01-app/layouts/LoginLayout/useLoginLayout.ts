@@ -1,4 +1,4 @@
-import { useAuthStore } from "@features";
+import { useAuthStore } from "@entities";
 import { LoginConfig } from "./LoginLayoutProps";
 import logo from "@assets/isotipo.png";
 

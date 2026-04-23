@@ -1,4 +1,4 @@
-import { useAuthStore } from "@features";
+import { useAuthStore } from "@entities";
 import { redirect } from "react-router-dom";
 
 export function AccessLoginGuard() {

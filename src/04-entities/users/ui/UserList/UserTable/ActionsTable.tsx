@@ -1,6 +1,6 @@
-import { Button } from "@ui-base/buttons/button";
-import { PencilIcon, TrashIcon, ViewIcon } from "@ui-base/icons";
-import { User } from "@features/users/types";
+import { Button } from "@ui-base/buttons/Button";
+import { PencilIcon, TrashIcon, ViewIcon } from "@ui-base/Icons";
+import { User } from "@entities/users/types";
 import { useActionsTable } from "../hooks/useActionsTable";
 import { ConfirmDelete } from "@ui-modules/overlay/confirm-delete";
 

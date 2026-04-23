@@ -1,7 +1,7 @@
 import { FieldGroup } from "@ui-modules/form-groups/field-group";
-import { Input } from "@ui-base/inputs/input";
+import { Input } from "@ui-base/inputs/Input";
 import { Form } from "@src/06-shared/ui/base/form";
-import { CreateUserRequest } from "@features/users/domain/schemas";
+import { CreateUserRequest } from "@src/04-entities/users/model/schemas";
 
 
 export interface CreateUserFormProps {

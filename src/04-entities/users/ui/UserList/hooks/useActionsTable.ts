@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useDeleteUser } from "@features/users/hooks/useUsers";
+import { useDeleteUser } from "@src/04-entities/users/api/use-user";
 import { useModal } from "@context/ModalContext";
 import { useToast } from "@context/ToastContext";
 

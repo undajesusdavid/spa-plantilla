@@ -1,4 +1,4 @@
-import { CreateUser } from "@features";
+import { CreateUser } from "@entities";
 import Page from "../Page";
 
 export default function UserCreatePage() {

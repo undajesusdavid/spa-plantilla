@@ -1,5 +1,5 @@
-import { useUsersList } from "@features/users/hooks/useUsers";
-import { Loading } from "@ui-base/feedback/loading";
+import { useUsersList } from "@src/04-entities/users/api/use-user";
+import { Loading } from "@ui-base/feedback/Loading";
 import { ErrorDisplay } from "@ui-modules/data-display/error-display";
 import { UserTable } from "./UserTable/UserTable";
 

@@ -1,2 +1,1 @@
-// Carpeta para entidades (FSD)
-export {};
+export * from './users';

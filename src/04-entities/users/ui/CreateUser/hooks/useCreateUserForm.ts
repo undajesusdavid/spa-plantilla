@@ -1,7 +1,7 @@
-import { useCreateUser } from "@features/users/hooks/useUsers";
+import { useCreateUser } from "@src/04-entities/users/api/use-user";
 import { useFormMutation } from "@hooks-ui/useFormMutation";
 import { useQueryClient } from "@tanstack/react-query";
-import { UserInputs } from "@features/users/types/user.types";
+import { UserInputs } from "@src/04-entities/users/model/user.types";
 
 export function useCreateUserForm() {
   const queryClient = useQueryClient();

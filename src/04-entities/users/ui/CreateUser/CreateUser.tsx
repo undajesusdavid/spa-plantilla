@@ -1,5 +1,5 @@
 import { ErrorDisplay } from "@ui-modules/data-display/error-display";
-import { Button } from "@ui-base/buttons/button";
+import { Button } from "@ui-base/buttons/Button";
 import { ButtonContainer } from "@ui-base/buttons/button-container";
 import { CreateUserForm } from "./CreateUserForm";
 import { useCreateUserForm } from "./hooks/useCreateUserForm";

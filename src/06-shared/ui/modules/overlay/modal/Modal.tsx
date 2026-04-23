@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./Modal.module.css";
-import { CloseIcon } from "@ui-base/icons/Icons";
+import { CloseIcon } from "@ui-base/Icons/Icons";
 
 interface ModalProps {
   isOpen: boolean;
