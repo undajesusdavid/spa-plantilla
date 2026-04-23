@@ -4,11 +4,17 @@ import { UserRouter } from "./user-router";
 import { LoginLayout, MainLayout } from "@layouts";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { AccessLoginGuard, AccessSystemGuard } from "./loaders";
+import { DesingSystemPage } from "@src/02-pages/desing-system/DesingSystemPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to="/login" replace />,
+  },
+
+  {
+    path: "/desing",
+    element: <DesingSystemPage />,
   },
 
   {

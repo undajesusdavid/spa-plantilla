@@ -29,6 +29,6 @@
 
 .mainContent { 
     padding: 1rem; /* Un poco más de aire que los 5px actuales */
-    background-color: var(--bg-main);
+    /* background-color: var(--bg-main); */
     overflow-y: auto; /* Scroll independiente para el contenido */
 }

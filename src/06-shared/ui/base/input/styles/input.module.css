@@ -1,0 +1,105 @@
+.inputContainer {
+    display: flex;
+    width: 100%;
+    --primary-color: #3b82f6;
+    --error-color: #ef4444;
+    --success-color: #10b981;
+    --border-color: #e2e8f0;
+    --placeholder-color: #94a3b8;
+    --bg-disabled: #f8fafc;
+}
+
+.inputContainer.column {
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.inputContainer.row {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.inputWrapper {
+    position: relative;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    transition: all 0.2s ease;
+    color: #1e293b;
+}
+
+.small {
+    padding: 6px 10px;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.medium {
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.large {
+    padding: 14px 18px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+:export {
+    small: inputSmall;
+    medium: inputMedium;
+    large: inputLarge;
+}
+
+.input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.input:hover:not(:disabled) {
+    border-color: #cbd5e1;
+}
+
+.input:focus:not(:disabled) {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.input:disabled {
+    background-color: var(--bg-disabled);
+    cursor: not-allowed;
+    color: #64748b;
+}
+
+
+.inputError {
+    border-color: var(--error-color) !important;
+}
+
+.inputError:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
+}
+
+.inputSuccess {
+    border-color: var(--success-color) !important;
+}
+
+.hasLeftIcon {
+    padding-left: 40px;
+}
+
+.hasRightIcon {
+    padding-right: 40px;
+}
