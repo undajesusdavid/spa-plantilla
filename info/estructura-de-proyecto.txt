@@ -1,0 +1,32 @@
+src/
+├── app/                        # Configuración global
+│   ├── providers/              # Providers de React (Zustand context si es necesario)
+│   ├── router/                 # Configuración de React Router Dom
+│   └── styles/                 # Estilos globales y temas
+│
+├── pages/                      # Composición de páginas
+│
+├── widgets/                    # Grandes bloques de la interfaz (Navbar, Sidebar)
+│
+├── features/                   # Lógica de acciones del usuario
+│   └── [feature-name]/
+│       ├── assets/             # Assets exclusivos de la funcionalidad
+│       ├── lib/schemas/        # Validaciones Zod para formularios
+│       ├── model/              # Zustand (Store local de la feature)
+│       └── ui/                 # Componentes interactivos
+│
+├── entities/                   # Dominio de negocio (Entidades transversales)
+│   └── [entity-name]/
+│       ├── assets/             # Imágenes/iconos del dominio
+│       ├── lib/schemas/        # Validaciones Zod del objeto de dominio
+│       ├── model/              # Zustand (Store global: ej. useUserStore)
+│       └── ui/                 # Representación visual de la entidad
+│
+└── shared/                     # Dominio técnico transversal
+    ├── api/                    # Cliente de API (Axios/Fetch)
+    ├── assets/                 # Logos, iconos y fuentes globales
+    ├── lib/
+    │   └── schemas/            # Schemas Zod genéricos (email, uuid, etc.)
+    └── ui/                     # UI Kit clasificado
+        ├── base/               # Componentes atómicos (Button, Input)
+        └── modules/            # Componentes compuestos (Modal, Card)

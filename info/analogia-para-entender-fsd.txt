@@ -1,0 +1,39 @@
+🏗️ La Analogía de la Cocina Profesional (FSD + Stack Moderno)
+Imagina que tu aplicación no es código, sino un restaurante de alta cocina. Para que el restaurante funcione y escale, cada área tiene una responsabilidad sagrada:
+
+1. 🍅 Entities (Los Ingredientes)
+Son la materia prima: el pollo, la harina, los vegetales.
+
+En tu código: Es el modelo de datos de Zustand y los tipos de TypeScript.
+
+Regla: Un ingrediente no sabe en qué plato terminará, solo sabe qué es. El tomate sabe que es un tomate (su esquema de Zod lo garantiza).
+
+2. 🔪 Features (Las Técnicas y Procesos)
+Es la capacidad de hacer algo con los ingredientes: picar, freír, hornear.
+
+En tu código: Son las acciones interactivas. El botón de "Eliminar Usuario" o el formulario de "Subir Archivo".
+
+Regla: Una técnica puede aplicarse a varios ingredientes. Picar sirve para cebollas o para carne. La técnica sabe cómo actuar, pero no decide cuándo servirse.
+
+3. 🍱 Widgets (El Plato Terminado)
+Es la combinación de ingredientes y técnicas presentados en un bloque coherente. Por ejemplo: "Ensalada César".
+
+En tu código: Es el componente que combina varias Entities y Features.
+
+La Composición: El Widget toma el pollo y la lechuga (Entities) y les aplica el proceso de aliñado y corte (Features).
+
+Regla: El plato ya tiene contexto. No es solo comida al azar; es una entrada específica de tu menú.
+
+4. 🍽️ Pages (La Mesa Servida)
+Es el momento en que el cliente recibe sus platos.
+
+En tu código: Es la ruta del navegador (/dashboard).
+
+Regla: La página no cocina. Solo decide qué platos (Widgets) van en la mesa y en qué orden. "Primero el Widget de Navbar, luego el Widget de Lista de Archivos".
+
+5. 🍴 Shared (Los Utensilios y la Despensa)
+Son las herramientas que todos usan: cuchillos, platos vacíos, sal, pimienta, agua.
+
+En tu código: Es tu UI Kit (botones genéricos, inputs), tu instancia de Axios y tus utilidades.
+
+Regla: Un cuchillo no sabe si cortará carne o pan. Es 100% agnóstico al negocio.

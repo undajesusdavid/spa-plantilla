@@ -1,0 +1,83 @@
+====================================================================================================
+CAPA          | CONCEPTO PRINCIPAL                   | REGLAS DE DEPENDENCIA Y CONTENIDO
+====================================================================================================
+app/          | Configuración global e inicio.       | Nivel más alto. Importa de todas las capas.
+              | (Providers, Router, Estilos).        | No contiene lógica de negocio.
+----------------------------------------------------------------------------------------------------
+processes/    | Flujos complejos entre páginas.      | Importa de pages hacia abajo. 
+              | (Ej: Registro multi-paso).           | Capa opcional para flujos transversales.
+----------------------------------------------------------------------------------------------------
+pages/        | Composición de la vista completa.    | Importa de widgets hacia abajo.
+              | (Rutas de la aplicación).            | Solo ensambla, no contiene lógica pesada.
+----------------------------------------------------------------------------------------------------
+widgets/      | Bloques autónomos de la interfaz.    | Importa de features hacia abajo.
+              | (Ej: Navbar, Sidebar).               | Combina entidades y acciones de usuario.
+----------------------------------------------------------------------------------------------------
+features/     | Acciones que el usuario puede hacer. | Importa de entities y shared.
+              | (Ej: Login, Añadir al carrito).      | Maneja formularios (Zod) y estados locales.
+----------------------------------------------------------------------------------------------------
+entities/     | Dominio de negocio (Entidades).      | Importa solo de shared.
+              | (Ej: User, Product, Order).          | Contiene Zustand global y esquemas de API.
+----------------------------------------------------------------------------------------------------
+shared/       | Infraestructura técnica reusable.    | NO importa de ninguna otra capa.
+              | (UI Kit, API, Utils, Schemas).       | Es código agnóstico al negocio.
+====================================================================================================
+
+REGLAS DE ORO (FSD):
+1. Dirección única: Las capas solo pueden importar de niveles inferiores.
+2. Prohibido "Cross-imports": Un módulo no puede importar de otro en su misma capa.
+3. Public API: Solo se accede a un módulo a través de su archivo index.ts.
+
+
+
+
+1. app/ (Capa de Configuración)
+Concepto: Es el "pegamento" de la aplicación. Aquí se inicializa todo lo que permite que el proyecto funcione.
+
+Contenido: Providers (Zustand, QueryClient), configuración de React Router Dom, y estilos CSS globales.
+
+Regla: Es la capa de mayor nivel. Puede importar de todas las demás capas (pages, widgets, features, etc.).
+
+2. processes/ (Capa de Procesos - Opcional)
+Concepto: Maneja flujos de usuario complejos que involucran múltiples páginas (ej. un registro de varios pasos o un checkout complicado).
+
+Regla: Solo puede importar de pages hacia abajo. Muchas aplicaciones modernas omiten esta capa y manejan la lógica en features.
+
+3. pages/ (Capa de Composición)
+Concepto: Contiene las vistas completas de la aplicación. Su función es puramente compositiva.
+
+Regla: Una página no debe tener lógica de negocio pesada; debe limitarse a ensamblar widgets y features. Importa de widgets hacia abajo.
+
+4. widgets/ (Capa de Bloques Autónomos)
+Concepto: Son componentes grandes y complejos que combinan entities y features. Son "piezas de rompecabezas" listas para usar.
+
+Ejemplos: Un Navbar (que usa la entidad User para la foto y la feature Logout).
+
+Regla: Deben ser autónomos. Importan de features hacia abajo.
+
+5. features/ (Capa de Acciones)
+Concepto: Representa lo que el usuario puede hacer. Es la capa de interacción y funcionalidad.
+
+Ejemplos: auth-by-email, add-to-cart, change-password.
+
+Regla: Aquí es donde usas Zod para validar formularios y Zustand para estados locales de la acción. Importa de entities y shared.
+
+6. entities/ (Capa de Dominio de Negocio)
+Concepto: Representa los objetos del mundo real en tu sistema. Es el "cerebro" de tus datos.
+
+Ejemplos: user, product, order.
+
+Regla: Aquí reside el Zustand global (el estado compartido de la entidad) y los esquemas de Zod que definen la estructura del objeto de la API. Solo puede importar de shared.
+
+7. shared/ (Capa de Infraestructura)
+Concepto: Es la base técnica. Contiene código agnóstico al negocio que podrías reutilizar en cualquier otro proyecto.
+
+Contenido: Tu UI Kit (base y modules), la instancia de la API, utilidades y esquemas transversales.
+
+Regla: Es la capa de menor nivel. No puede importar de ninguna otra capa.
+
+
+
+
+
+

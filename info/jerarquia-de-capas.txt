@@ -1,0 +1,39 @@
+================================================================================
+          JERARQUÍA DE CAPAS Y FLUJO DE DEPENDENCIAS (FSD)
+================================================================================
+
+ [ NIVEL ]    [ CAPA ]      [ FLUJO DE IMPORTACIÓN ]
+    ▲           app/        Puede importar de: TODAS (pages, widgets, ...)
+    |           pages/      Puede importar de: widgets, features, entities, shared
+    |           widgets/    Puede importar de: features, entities, shared
+    |           features/   Puede importar de: entities, shared
+    |           entities/   Puede importar de: shared
+    ▼           shared/     No puede importar de NINGUNA capa superior.
+
+================================================================================
+REGLAS CRÍTICAS DEL FLUJO:
+================================================================================
+
+1. DIRECCIÓN UNIDIRECCIONAL:
+   El flujo de dependencias es estrictamente descendente. Una capa solo conoce 
+   lo que está "debajo" de ella. Esto evita ciclos de importación.
+
+2. AISLAMIENTO DE SLICES (HORIZONTAL):
+   Los módulos (slices) que están en la misma capa no pueden importarse entre sí.
+   Ejemplo: 'entities/user' NO puede importar de 'entities/product'.
+   Si necesitan compartir algo, ese código debe bajar a 'shared'.
+
+3. ACCESO VÍA PUBLIC API:
+   Toda importación entre capas debe hacerse a través del archivo 'index.ts' 
+   de la carpeta correspondiente. Nunca se debe acceder a los archivos 
+   internos de otra capa.
+
+4. INDEPENDENCIA DE LA CAPA SHARED:
+   La capa 'shared' debe ser agnóstica al negocio. Es infraestructura pura 
+   que podría funcionar en cualquier otro proyecto.
+
+================================================================================
+DISEÑADO PARA: UndaSystems
+ARQUITECTURA: Feature-Sliced Design (FSD)
+STACK: React + TypeScript + Zustand + Zod + React Query
+================================================================================

@@ -1,5 +1,0 @@
-.container { border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem; background: #fff; }
-.controls { display: flex; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.6rem; }
-.tab { border: 1px solid #cbd5e1; background: #f8fafc; border-radius: 6px; padding: 0.3rem 0.5rem; }
-.active { border: 1px solid #2563eb; background: #eff6ff; border-radius: 6px; padding: 0.3rem 0.5rem; font-weight: 700; }
-.data { background: #111827; color: #f8fafc; padding: 0.6rem; border-radius: 6px; overflow-x: auto; font-size: 0.82rem; }
