@@ -10,6 +10,7 @@ export type InputProps = {
     rightIcon?: ReactNode;
     leftIconClick?: (input: HTMLInputElement) => void;
     rightIconClick?: (input: HTMLInputElement) => void;
+    labelClick?: () => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 
@@ -18,10 +19,15 @@ export type InputLabelProps = {
     label?: string;
     isRequired?: boolean;
     className?: string;
+    handleClick?: () => void;
 };
 
 export type InputIconProps = {
   icon?: ReactNode;             // Puede ser un SVG, un componente de Lucide, etc.
   position: 'left' | 'right';   // Determina el anclaje absoluto
   onClick?: () => void;         // Por si el icono es interactivo (ej. limpiar campo)
+}
+
+export type InputErrorProps = {
+    message?: string
 }

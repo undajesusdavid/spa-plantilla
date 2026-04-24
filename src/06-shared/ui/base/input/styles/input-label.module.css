@@ -9,3 +9,7 @@
 .required {
     color: red;
 }
+
+.labelIsClickable {
+    cursor: pointer;
+}

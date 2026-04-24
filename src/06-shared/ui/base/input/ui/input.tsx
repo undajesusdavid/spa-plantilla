@@ -3,6 +3,7 @@ import styles from "../styles/input.module.css";
 import { InputProps } from "../model/types";
 import { InputLabel } from "./input.label";
 import { InputIcon } from "./input.icon";
+import { InputError } from "./input.error";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
@@ -15,6 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     rightIcon,
     leftIconClick,
     rightIconClick,
+    labelClick,
     ...rest
   } = props;
   const id = useId();
@@ -57,21 +59,29 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   };
 
   return (
-    <div className={containerClasses}>
-      <InputLabel label={label} htmlFor={id} isRequired={rest.required} />
-      <div className={styles.inputWrapper}>
-        <input className={inputClasses} id={id} {...rest} ref={inputRef} />
-        <InputIcon
-          icon={leftIcon}
-          position="left"
-          onClick={!rest.disabled ? handleClickLeftIcon : undefined}
+    <>
+      <div className={containerClasses}>
+        <InputLabel
+          label={label}
+          htmlFor={id}
+          handleClick={labelClick}
+          isRequired={rest.required}
         />
-        <InputIcon
-          icon={rightIcon}
-          position="right"
-          onClick={!rest.disabled ? handleClickRightIcon : undefined}
-        />
+        <div className={styles.inputWrapper}>
+          <input className={inputClasses} id={id} {...rest} ref={inputRef} />
+          <InputIcon
+            icon={leftIcon}
+            position="left"
+            onClick={!rest.disabled ? handleClickLeftIcon : undefined}
+          />
+          <InputIcon
+            icon={rightIcon}
+            position="right"
+            onClick={!rest.disabled ? handleClickRightIcon : undefined}
+          />
+        </div>
+        <InputError message={error} />
       </div>
-    </div>
+    </>
   );
 });

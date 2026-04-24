@@ -1,0 +1,54 @@
+.errorWrapper {
+    color: #d32f2f;
+    /* Rojo estándar de accesibilidad */
+    font-size: 0.875rem;
+    /* 14px aprox */
+    margin-top: 0.25rem;
+    /* Separación del input (4px) */
+    min-height: 1.25rem;
+    /* Evita que el layout "salte" cuando aparece el error */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Espacio por si añades un icono */
+    font-weight: 500;
+    animation: fadeIn 0.2s ease-in-out;
+    height: 0;
+    /* Para que no ocupe espacio visual, solo rompa */
+}
+
+
+.messageError {
+    /* Reset de márgenes de la etiqueta <p> */
+    margin: 4px 0 0 0;
+
+    /* Tipografía */
+    color: #e53935;
+    /* Un rojo vibrante pero legible */
+    font-size: 0.8rem;
+    /* Tamaño pequeño para jerarquía */
+    line-height: 1.2;
+    font-family: sans-serif;
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    /* Micro-interacción */
+    animation: slideDown 0.2s ease-out;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

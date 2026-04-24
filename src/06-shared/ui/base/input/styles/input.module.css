@@ -12,13 +12,13 @@
 .inputContainer.column {
     flex-direction: column;
     justify-content: center;
-    gap: 8px;
+    row-gap: 8px;
 }
 
 .inputContainer.row {
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    column-gap: 8px;
 }
 
 .inputWrapper {
@@ -56,12 +56,6 @@
     padding: 14px 18px;
     font-size: 16px;
     line-height: 24px;
-}
-
-:export {
-    small: inputSmall;
-    medium: inputMedium;
-    large: inputLarge;
 }
 
 .input::placeholder {
