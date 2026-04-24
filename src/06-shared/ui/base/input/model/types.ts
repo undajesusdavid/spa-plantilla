@@ -1,33 +1,49 @@
-import { ReactNode } from "react";
+import { ReactNode, InputHTMLAttributes } from "react";
 
-export type InputProps = {
-    label?: string;
-    inputSize?: "small" | "medium" | "large";
-    orientation?: "row" | "column";
-    error?: string;
-    success?: string;
-    leftIcon?: ReactNode;
-    rightIcon?: ReactNode;
-    leftIconClick?: (input: HTMLInputElement) => void;
-    rightIconClick?: (input: HTMLInputElement) => void;
-    labelClick?: () => void;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+// 1. Definimos las variantes para facilitar cambios globales (e.g. temas)
+export type InputSize = "small" | "medium" | "large";
+export type InputOrientation = "row" | "column";
 
-
-export type InputLabelProps = {
-    htmlFor: string;
-    label?: string;
-    isRequired?: boolean;
-    className?: string;
-    handleClick?: () => void;
-};
-
-export type InputIconProps = {
-  icon?: ReactNode;             // Puede ser un SVG, un componente de Lucide, etc.
-  position: 'left' | 'right';   // Determina el anclaje absoluto
-  onClick?: () => void;         // Por si el icono es interactivo (ej. limpiar campo)
+// 2. Props específicas de nuestra abstracción de UI
+interface InputCustomProps {
+  label?: string;
+  inputSize?: InputSize;
+  orientation?: InputOrientation;
+  error?: string;
+  success?: boolean;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  // Simplificamos los clicks: si el usuario necesita el input, usará la Ref
+  onLeftIconClick?: (input: HTMLInputElement | null) => void;
+  onRightIconClick?: (input: HTMLInputElement | null) => void;
+  onLabelClick?: () => void;
+  isRequired?: boolean;
 }
 
-export type InputErrorProps = {
-    message?: string
+// 3. Componemos con las props nativas de HTML
+// Usamos Interface en lugar de Type para mejor compatibilidad con forwardRef
+export interface InputProps extends InputCustomProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {}
+
+/**
+ * Props para sub-componentes internos (Composición)
+ */
+export interface InputLabelProps {
+  htmlFor: string;
+  label?: string;
+  isRequired?: boolean;
+  className?: string;
+  handleClick?: () => void;
+}
+
+export interface InputIconProps {
+  icon: ReactNode;
+  position: 'left' | 'right';
+  onClick?: () => void;
+  // Añadimos un flag para saber si debe tener puntero de mouse
+  isClickable?: boolean;
+}
+
+export interface InputErrorProps {
+  message?: string;
+  variant?: 'error' | 'success'; // Tip: Puedes reutilizar este componente para success
 }

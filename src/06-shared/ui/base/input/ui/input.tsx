@@ -8,80 +8,65 @@ import { InputError } from "./input.error";
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     label,
-    inputSize,
-    orientation,
+    inputSize = "medium",
+    orientation = "column",
     error,
     success,
     leftIcon,
     rightIcon,
-    leftIconClick,
-    rightIconClick,
-    labelClick,
+    onLeftIconClick,
+    onRightIconClick,
+    onLabelClick,
+    className,
     ...rest
   } = props;
   const id = useId();
-  const inputRef = useRef<HTMLInputElement>(null);
-  useImperativeHandle(ref, () => inputRef.current!);
+  const internalRef = useRef<HTMLInputElement>(null);
+  useImperativeHandle(ref, () => internalRef.current!);
 
   const inputClasses = [
     styles.input,
-    inputSize ? styles[inputSize] : styles.medium,
-    error && styles.inputError,
+    styles[inputSize],
+    error ? styles.inputError : "",
     success && styles.inputSuccess,
     leftIcon && styles.hasLeftIcon,
     rightIcon && styles.hasRightIcon,
-    rest.className, // Clases extra que vengan por props
-  ]
-    .filter(Boolean)
-    .join(" ");
+    className,
+  ].filter(Boolean).join(" ");
 
-  const containerClasses = [
-    styles.inputContainer,
-    orientation ? styles[orientation] : styles.column,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  const handleClickLeftIcon = () => {
-    if (leftIconClick) {
-      if (leftIconClick && inputRef.current) {
-        leftIconClick(inputRef.current);
-      }
-    }
-  };
-
-  const handleClickRightIcon = () => {
-    if (rightIconClick) {
-      if (rightIconClick && inputRef.current) {
-        rightIconClick(inputRef.current);
-      }
-    }
+  const handleIconClick = (handler?: (el: HTMLInputElement | null) => void) => {
+    if (!handler || rest.disabled) return;
+    handler(internalRef.current);
   };
 
   return (
-    <>
-      <div className={containerClasses}>
-        <InputLabel
-          label={label}
-          htmlFor={id}
-          handleClick={labelClick}
-          isRequired={rest.required}
-        />
+    <div className={[styles.inputContainer, styles[orientation]].join(" ")}>
+      <InputLabel
+        label={label}
+        htmlFor={id}
+        handleClick={onLabelClick}
+        isRequired={rest.required}
+      />
+
+      {/* Nuevo contenedor: Agrupa el Input y el Error verticalmente */}
+      <div className={styles.fieldGroup}>
         <div className={styles.inputWrapper}>
-          <input className={inputClasses} id={id} {...rest} ref={inputRef} />
+          <input className={inputClasses} id={id} {...rest} ref={internalRef} />
           <InputIcon
             icon={leftIcon}
             position="left"
-            onClick={!rest.disabled ? handleClickLeftIcon : undefined}
+            onClick={() => handleIconClick(onLeftIconClick)}
           />
           <InputIcon
             icon={rightIcon}
             position="right"
-            onClick={!rest.disabled ? handleClickRightIcon : undefined}
+            onClick={() => handleIconClick(onRightIconClick)}
           />
         </div>
+
+        {/* El error ahora vive dentro del fieldGroup, alineado con el input */}
         <InputError message={error} />
       </div>
-    </>
+    </div>
   );
 });
