@@ -5,7 +5,8 @@ import styles from "../styles/input.module.css";
 export const InputIcon = memo(({ 
   icon, 
   position, 
-  onClick 
+  onClick,
+  isClickable
 }: InputIconProps) => {
   
   if (!icon) return null;
@@ -13,7 +14,7 @@ export const InputIcon = memo(({
   const containerClasses = [
     styles.iconContainer,
     styles[position], // styles.left o styles.right
-    onClick ? styles.isClickable : ""
+    isClickable && styles.isClickable
   ].join(" ").trim();
 
   // Si tiene onClick, debe comportarse como un botón para accesibilidad

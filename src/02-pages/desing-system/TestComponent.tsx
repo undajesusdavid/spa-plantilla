@@ -1,4 +1,4 @@
-import { InputUsername } from "@entities/users/ui/input-username/input-username";
+import { InputUsername } from "@src/05-entities/users/ui/input-username/input-username";
 import { InputPassword } from "@src/05-entities/users/ui/input-password/input-password";
 import { useState } from "react";
 
@@ -7,8 +7,11 @@ export const TestComponent = () => {
   
   return (
     <div>
-      <InputUsername orientation="row" successColor validateSemantics/>
-      <InputPassword orientation="row" />
+      <InputUsername
+        successColor
+        required
+      />
+      <InputPassword  orientation="row" inputSize="medium" />
     </div>
   );
 };

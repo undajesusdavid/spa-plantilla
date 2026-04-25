@@ -1,49 +1,30 @@
-import { forwardRef, ChangeEvent } from "react";
 import { Input } from "@shared/ui/base/input";
+import { ChangeEvent, forwardRef } from "react";
+import { username } from "../../model";
 import { UserIcon } from "@shared/ui/base/Icons";
-import { InputUsernameProps } from "./../../model/types.ui";
-import { useInput } from "@shared/lib/hooks/useInput";
-import { username } from "../../model/schemas.user";
+import { InputUsernameProps } from "../../model/types-ui.user";
 
 export const InputUsername = forwardRef<HTMLInputElement, InputUsernameProps>(
   (props, ref) => {
-    const {
-      onChange,
-      error: externalError,
-      successColor,
-      validateSemantics,
-      ...rest
-    } = props;
-    const { internalError, success, validation } = useInput<string>();
+    const { successColor, ...rest } = props;
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const validation = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
-      if (validateSemantics) {
-        validation(username, value);
-      }
-
-      onChange?.(e);
+      const result = username.safeParse(value);
+      return result.success ? null : result.error.errors[0].message;
     };
-
-    const isSuccessful =
-      !!successColor && validateSemantics && success && !externalError;
 
     return (
       <Input
         {...rest}
-        ref={ref}
-        required
-        type="text"
+        successColor={successColor}
+        handleValidation={validation}
         name="username"
-        label="Nombre de usuario"
         leftIcon={<UserIcon size={21} />}
-        error={internalError || externalError}
-        success={isSuccessful}
-        onChange={handleChange}
-        autoComplete="username"
+        placeholder="ingrese el nombre de usuario"
+        label="Nombre de usuario"
+        ref={ref}
       />
     );
   },
 );
-
-InputUsername.displayName = "InputUsername";
