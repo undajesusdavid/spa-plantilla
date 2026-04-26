@@ -34,7 +34,7 @@
       "@ui-modules/*": ["./src/06-shared/ui/modules/*"],
       "@context/*": ["./src/01-app/providers/*"],
       "@layouts/*": ["./src/01-app/layouts/*"],
-      "@layouts": ["./src/01-app/layouts/index.ts"],
+      "@layouts": ["src/01-app/layouts/index.ts"],
       "@config/*": ["./src/06-shared/config/*"],
       "@api/*": ["./src/06-shared/api/*"],
       "@api": ["./src/06-shared/api/index.ts"],

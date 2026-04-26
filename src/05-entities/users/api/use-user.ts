@@ -1,13 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { userApi } from './user-api';
-import { AuthUserRequest, CreateUserRequest } from '../model/schemas.user';
-
-export const useLogin = (onSuccess: () => void) => {
-  return useMutation({
-    mutationFn: (body: AuthUserRequest) => userApi.login(body),
-    onSuccess,
-  });
-};
+import { CreateUserRequest } from '../model/schemas.user';
 
 export const useMyPermissions = (onSuccess: () => void) => {
   return useMutation({
@@ -15,7 +8,6 @@ export const useMyPermissions = (onSuccess: () => void) => {
     onSuccess,
   });
 };
-
 
 export const useCreateUser = () => {
   return useMutation({

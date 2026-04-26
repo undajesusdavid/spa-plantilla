@@ -1,13 +1,9 @@
 import z from 'zod';
 import { apiClient } from '@api/axios-client';
-import { AuthUserRequest, AuthUserDtoResponse, CreateUserRequest, GetUserDtoResponse, MyPermissionsResponse } from '../model/schemas.user';
+import {  CreateUserRequest, GetUserDtoResponse, MyPermissionsResponse } from '../model/schemas.user';
 
 export const userApi = {
-  login: async (body: AuthUserRequest) => {
-    const { data } = await apiClient.post('/users/login', body);
-    return AuthUserDtoResponse.parse(data);
-  },
-
+ 
   myPermissions: async (body: null) => {
     const { data } = await apiClient.get('/users/me/permissions', { params: body });
     return MyPermissionsResponse.parse(data);

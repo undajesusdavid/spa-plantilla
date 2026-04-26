@@ -1,10 +1,11 @@
-import { LoginForm } from "@entities";
 import DashboardPage from "@pages/dashboard/DashboardPage";
+import { LoginPage } from "@pages/login";
 import { UserRouter } from "./user-router";
-import { LoginLayout, MainLayout } from "@layouts";
+import { MainLayout } from "@src/01-app/layouts";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { AccessLoginGuard, AccessSystemGuard } from "./loaders";
 import { DesingSystemPage } from "@src/02-pages/desing-system/DesingSystemPage";
+
 
 export const router = createBrowserRouter([
   {
@@ -19,9 +20,8 @@ export const router = createBrowserRouter([
 
   {
     path: "/login",
-    element: <LoginLayout />,
-    loader: AccessLoginGuard,
-    children: [{ index: true, element: <LoginForm /> }],
+    element: <LoginPage />,
+    loader: AccessLoginGuard
   },
 
   {

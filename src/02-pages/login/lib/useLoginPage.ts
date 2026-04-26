@@ -1,12 +1,13 @@
-import { useAuthStore } from "@entities";
-import { LoginConfig } from "./LoginLayoutProps";
+import { LoginPageConfig } from "../model/types";
+
 import logo from "@assets/isotipo.png";
+import { useSessionStore } from "@src/05-entities/session/model";
 
 export function useLoginLayout() {
 
-    const token = useAuthStore((state) => state.token);
+    const token = useSessionStore((state) => state.token);
     
-    const config: LoginConfig = {
+    const config: LoginPageConfig = {
         token: token || "",
         logo: logo,
         title: "Sistema de Archivos",

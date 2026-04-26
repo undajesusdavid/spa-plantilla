@@ -10,3 +10,4 @@ export * from "./ui/view-icon";
 export * from "./ui/user-icon";
 export * from "./ui/lock-icon";
 export * from "./ui/eye-off-icon";
+export * from "./ui/email-icon";

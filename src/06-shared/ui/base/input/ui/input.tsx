@@ -1,42 +1,73 @@
-import { forwardRef, ChangeEvent, useState } from "react";
-import { InputBase } from "./input.base";
+import { forwardRef, useId, useImperativeHandle, useRef } from "react";
+import styles from "../styles/input.module.css";
 import { InputProps } from "../model/types";
+import { InputLabel } from "./input.label";
+import { InputIcon } from "./input.icon";
+import { InputError } from "./input.error";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
-    handleValidation,
-    error: externalError,
-    successColor,
+    label,
+    inputSize = "medium",
+    orientation = "column",
+    error,
+    success,
+    leftIcon,
+    rightIcon,
+    onLeftIconClick,
+    onRightIconClick,
+    onLabelClick,
+    className,
     ...rest
   } = props;
+  const id = useId();
+  const internalRef = useRef<HTMLInputElement>(null);
+  useImperativeHandle(ref, () => internalRef.current!);
 
-  const [error, setError] = useState<string | null>(null);
-  const [isSuccessFul, setIsSuccessFul] = useState(false);
+  const inputClasses = [
+    styles.input,
+    styles[inputSize],
+    error ? styles.inputError : "",
+    success && styles.inputSuccess,
+    leftIcon && styles.hasLeftIcon,
+    rightIcon && styles.hasRightIcon,
+    className,
+  ].filter(Boolean).join(" ");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (handleValidation) {
-      const result = handleValidation(e);
-      setError(result)
-      if (result) {
-        e.target.value === "" &&  setError(null);
-        setIsSuccessFul(false);
-      } else {
-        setIsSuccessFul(!!(successColor && !externalError));
-      }
-    }
-
-    rest.onChange?.(e);
+  const handleIconClick = (handler?: (el: HTMLInputElement | null) => void) => {
+    if (!handler || rest.disabled) return;
+    handler(internalRef.current);
   };
 
   return (
-    <InputBase
-      {...rest}
-      ref={ref}
-      error={error || externalError}
-      success={isSuccessFul}
-      onChange={handleChange}
-    />
+    <div className={[styles.inputContainer, styles[orientation]].join(" ")}>
+      <InputLabel
+        label={label}
+        htmlFor={id}
+        handleClick={onLabelClick}
+        isRequired={rest.required}
+      />
+
+      {/* Nuevo contenedor: Agrupa el Input y el Error verticalmente */}
+      <div className={styles.fieldGroup}>
+        <div className={styles.inputWrapper}>
+          <input className={inputClasses} id={id} {...rest} ref={internalRef} />
+          <InputIcon
+            icon={leftIcon}
+            position="left"
+            onClick={() => handleIconClick(onLeftIconClick)}
+            isClickable={!!onLeftIconClick}
+          />
+          <InputIcon
+            icon={rightIcon}
+            position="right"
+            onClick={() => handleIconClick(onRightIconClick)}
+            isClickable={!!onRightIconClick}
+          />
+        </div>
+
+        <InputError message={error} />
+      </div>
+    </div>
   );
 });
-
-Input.displayName = "Input";

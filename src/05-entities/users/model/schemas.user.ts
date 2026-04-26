@@ -16,20 +16,14 @@ export const password = z.string()
 
 export type passwordType = z.infer<typeof password>;
 
+export const email = z.string()
+  .email("El formato del correo electrónico no es válido");
+
+export type emailType = z.infer<typeof email>;
+
 export const MyPermissionsResponse = z.object({
   permissions: z.string().array(),
   roles: z.string().array(),
-});
-
-export const AuthUserRequestDto = z.object({
-  username: z.string().min(2),
-  password: z.string().min(6),
-});
-
-export const AuthUserDtoResponse = z.object({
-  token: z.string(),
-  id: z.string(),
-  username: z.string(),
 });
 
 export const CreateUserRequestDto = z.object({
@@ -53,8 +47,6 @@ export const UpdateUserRequestDto = z.object({
 });
 
 export type MyPermissionsResponse = z.infer<typeof MyPermissionsResponse>;
-export type AuthUserRequest = z.infer<typeof AuthUserRequestDto>;
-export type AuthUserResponse = z.infer<typeof AuthUserDtoResponse>;
 export type CreateUserRequest = z.infer<typeof CreateUserRequestDto>;
 export type GetUserResponse = z.infer<typeof GetUserDtoResponse>;
 export type UpdateUserRequest = z.infer<typeof UpdateUserRequestDto>;

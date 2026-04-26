@@ -4,14 +4,15 @@ import { HeaderData, SideBarData } from "./MainLayoutProps";
 import { HEADER_LINKS } from "@config/layout.header-links";
 import { MENU_ITEMS } from "@config/layout.menu-items";
 // Hooks
-import { useAuthStore } from "@entities";
+import { useSessionStore } from "@src/05-entities/session/model";
 
 //imagenes
 import logo from '@assets/logotipo.png';
 import { useNavigate } from "react-router";
 
+
 export function useMainLayout() {
-    const { logout, username } = useAuthStore();
+    const { logout, username } = useSessionStore();
     const navigate = useNavigate();
 
     // Configuración del Header

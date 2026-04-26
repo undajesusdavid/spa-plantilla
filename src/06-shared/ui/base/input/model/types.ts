@@ -2,11 +2,11 @@ import { ReactNode, InputHTMLAttributes, ChangeEvent } from "react";
 
 /** componentes principales */
 
-export interface InputBaseProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   inputSize?: "small" | "medium" | "large";
   orientation?: "row" | "column";
-  error?: string;
+  error?: string | null;
   success?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
@@ -16,10 +16,10 @@ export interface InputBaseProps extends Omit<InputHTMLAttributes<HTMLInputElemen
   isRequired?: boolean;
 }
 
-export interface InputProps extends Omit<InputBaseProps, "success"> {
+/*export interface InputProps extends Omit<InputBaseProps, ""> {
   handleValidation?: (e: ChangeEvent<HTMLInputElement>) => string | null;
   successColor?: boolean;
-}
+}*/
 
 /** Sub-Componentes */
 
@@ -39,6 +39,6 @@ export interface InputIconProps {
 }
 
 export interface InputErrorProps {
-  message?: string;
+  message?: string | null;
   variant?: 'error' | 'success'; // Tip: Puedes reutilizar este componente para success
 }

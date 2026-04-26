@@ -1,9 +1,9 @@
-import { Outlet } from "react-router";
-import styles from "./LoginLayout.module.css";
-import { useLoginLayout } from "./useLoginLayout";
+import styles from "./LoginPage.module.css";
+import { useLoginLayout } from "../lib/useLoginPage";
+import { LoginByUsername } from "@features";
 
 
-export function LoginLayout() {
+export function LoginPage() {
   const { config } = useLoginLayout();
   
   return (
@@ -20,7 +20,9 @@ export function LoginLayout() {
           </p>
         </header>
 
-        <div className={styles.formContainer}><Outlet /></div>
+        <div className={styles.formContainer}>
+           <LoginByUsername />
+        </div>
 
         <footer style={{ marginTop: "2.5rem" }}>
           <p style={{ fontSize: "0.75rem", color: "#94a3b8", fontWeight: 500 }}>
