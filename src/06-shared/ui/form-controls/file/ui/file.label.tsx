@@ -1,13 +1,13 @@
 import { memo } from "react";
-import { InputLabelProps } from "../model/types";
-import styles from "../_common/input.module.css";
+import { FileLabelProps } from "../model/types";
+import styles from "../_common/file.module.css";
 
-export const InputLabel = memo(({ 
+export const FileLabel = memo(({ 
   label, 
   isRequired, 
   htmlFor, 
   handleClick 
-}: InputLabelProps) => {
+}: FileLabelProps) => {
   
   if (!label) return null;
 
@@ -32,4 +32,4 @@ export const InputLabel = memo(({
   );
 });
 
-InputLabel.displayName = "InputLabel";
+FileLabel.displayName = "FileLabel";

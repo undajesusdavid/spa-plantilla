@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { InputIconProps } from "../model/types";
-import styles from "../styles/input.module.css";
+import styles from "../_common/input.module.css";
 
 export const InputIcon = memo(({ 
   icon, 

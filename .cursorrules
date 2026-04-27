@@ -29,6 +29,7 @@ Eres un experto en desarrollo Frontend Senior. Tu especialidad es la construcci�
 - **Recursos Privados:** Contextos, hooks internos o estilos en carpeta `_common/` dentro de la carpeta del componente.
 - **Public API:** El `index.ts` debe usar `Object.assign` para exportar el componente compuesto unificado.
 
+
 ## # Coding & Quality Standards
 - **Componentes:** Siempre Arrow Functions y PascalCase para UI.
 - **Nomenclatura de Archivos:**
@@ -40,6 +41,29 @@ Eres un experto en desarrollo Frontend Senior. Tu especialidad es la construcci�
 - **Seguridad:** Prohibido el uso de `any`. Usa Tipos Estrictos y validación con Zod para respuestas de API.
 - **Testing:** Cada lógica compleja debe incluir su archivo `.test.tsx` o `.spec.ts` usando Vitest.
 
+## # Slices & Segments Rules (Layers 02-05)
+- **Aplicación:** Las capas `02-pages`, `03-widgets`, `04-features` y `05-entities` deben organizarse obligatoriamente en **Slices** (basados en dominio) y **Segmentos** (basados en propósito técnico).
+
+- **Estructura Interna del Slice:** Cada slice debe contener únicamente los siguientes segmentos si son necesarios:
+  - `ui/`: Componentes visuales y estilos.
+  - `api/`: Comunicación con el servidor.
+  - `model/`: Estado, tipos y esquemas.
+  - `lib/`: Lógica auxiliar y hooks locales.
+
+- **Convención de Nomenclatura Estricta (Nombres de Archivos):**
+  - Los archivos dentro de `api/` y `model/` deben llevar el nombre del slice como prefijo para evitar colisiones en las pestañas del editor.
+  - **En `api/`:** `[slice-name].api.ts` (Instancias Axios) y `[slice-name].service.ts` (Hooks de TanStack Query).
+  - **En `model/`:** `[slice-name].store.ts` (Zustand), `[slice-name].types.ts` (TypeScript) y `[slice-name].schema.ts` (Zod).
+
+- **Segmento /ui:**
+  - El componente principal del slice debe estar en la raíz de `/ui` o seguir la estructura de "Componente Compuesto" si es complejo.
+
+- **Segmento /lib:**
+  - Solo debe contener utilidades que no sean compartidas con otros slices. Si una utilidad se usa en más de un slice, debe promoverse a `06-shared/lib`.
+
+- **Public API (index.ts):**
+  - Cada Slice debe tener un `index.ts` en su raíz que exporte únicamente lo necesario para otras capas. 
+  - **REGLA DE ORO:** Nunca importes desde los segmentos internos de un slice (ej. NO hacer `import { ... } from '@/features/auth/ui/form'`). Solo importa desde el index (ej. `import { ... } from '@/features/auth'`).
 ## # Workflow Rules
 1. **Explicación:** Antes de generar código, resume los pasos lógicos.
 2. **Refactor:** Archivos que superen las 250 líneas deben ser segmentados.

@@ -1,5 +1,5 @@
 import { forwardRef, useId, useImperativeHandle, useRef } from "react";
-import styles from "../styles/input.module.css";
+import styles from "../_common/input.module.css";
 import { InputProps } from "../model/types";
 import { InputLabel } from "./input.label";
 import { InputIcon } from "./input.icon";
@@ -48,20 +48,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         isRequired={rest.required}
       />
 
-      {/* Nuevo contenedor: Agrupa el Input y el Error verticalmente */}
       <div className={styles.fieldGroup}>
         <div className={styles.inputWrapper}>
           <input className={inputClasses} id={id} {...rest} ref={internalRef} />
           <InputIcon
             icon={leftIcon}
             position="left"
-            onClick={() => handleIconClick(onLeftIconClick)}
+            onClick={onLeftIconClick ? () => handleIconClick(onLeftIconClick) : undefined}
             isClickable={!!onLeftIconClick}
           />
           <InputIcon
             icon={rightIcon}
             position="right"
-            onClick={() => handleIconClick(onRightIconClick)}
+            onClick={onRightIconClick ? () => handleIconClick(onRightIconClick) : undefined}
             isClickable={!!onRightIconClick}
           />
         </div>
@@ -71,3 +70,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     </div>
   );
 });
+
+Input.displayName = "Input";

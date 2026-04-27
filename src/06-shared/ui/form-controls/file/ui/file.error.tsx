@@ -1,8 +1,8 @@
 import { memo } from "react";
-import { InputErrorProps } from "../model/types";
-import styles from "../_common/input.module.css";
+import { FileErrorProps } from "../model/types";
+import styles from "../_common/file.module.css";
 
-export const InputError = memo(({ message }: InputErrorProps) => {
+export const FileError = memo(({ message }: FileErrorProps) => {
 
   if (!message) return null;
 
@@ -19,4 +19,4 @@ export const InputError = memo(({ message }: InputErrorProps) => {
   );
 });
 
-InputError.displayName = "InputError";
+FileError.displayName = "FileError";
