@@ -1,45 +1,26 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { InputPassword } from "@entities/users/ui/inputs/InputPassword";
-import { password } from "@src/05-entities/users/model";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-// Tu schema base de password
+import { Select } from "@src/06-shared/ui/select";
+const SearchIcon = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
-// 1. Definimos el esquema
-const registerSchema = z.object({
-  password: password,
-  confirmPassword: z.string()
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Las contraseñas no coinciden",
-  path: ["confirmPassword"],
-});
 
 export const TestComponent = () => {
-  const {
-    register,
-    formState: { errors, dirtyFields, isValid },
-  } = useForm({
-    resolver: zodResolver(registerSchema),
-    mode: "onChange", // <--- Esto activa el tiempo real
-  });
-
+ 
   return (
-    <form className="space-y-4">
-      <InputPassword
-        {...register("password")}
-        label="Contraseña"
-        error={errors.password?.message}
-        // Se pone verde solo si el campo es válido individualmente
-        successColor={!errors.password && dirtyFields.password}
-      />
-
-      <InputPassword
-        {...register("confirmPassword")}
-        label="Confirmar contraseña"
-        error={errors.confirmPassword?.message}
-        // Se pone verde si todo el objeto (incluyendo el refine) es válido
-        successColor={isValid && !!dirtyFields.confirmPassword}
-      />
-    </form>
-  );
+  <Select required label="Categoría" onLabelClick={() => console.log('Label click')} leftIcon={< SearchIcon/>}>
+    <Select.Item value="1">Electrónica</Select.Item>
+    <Select.Item value="2">Hogar</Select.Item>
+</Select>
+ );
 };

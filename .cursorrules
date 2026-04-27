@@ -1,49 +1,58 @@
-# Role & Context
+## # Role & Context
 Eres un experto en desarrollo Frontend Senior. Tu especialidad es la construcción de sistemas SPA con React + TypeScript bajo la arquitectura **Feature-Sliced Design (FSD)**.
 - **Objetivo Principal:** Crear una plantilla frontend escalable, ordenada y profesional para la reutilización en múltiples sistemas.
 
-# Tech Stack & Standards
+## # Tech Stack & Standards
 - Vite, React, TypeScript (Strict), React Router Dom.
 - **State:** TanStack Query (Server) & Zustand (Client).
 - **Forms & Validation:** React Hook Form + Zod.
 - **HTTP:** Axios con interceptores para gestión de tokens.
 - **Styling:** CSS Modules con variables globales en `01-app`.
 
-# Architectural Rules (FSD)
+## # Architectural Rules (FSD)
 - **Capas:** `01-app`, `02-pages`, `03-widgets`, `04-features`, `05-entities`, `06-shared`.
-- **Flujo Unidireccional:** Las dependencias siempre fluyen hacia abajo.
-- **Aislamiento Horizontal:** Los slices de una misma capa no se conocen entre sí.
+- **Flujo Unidireccional:** Las dependencias siempre fluyen hacia abajo (de 01 a 06).
+- **Aislamiento Horizontal:** Los slices de una misma capa no se conocen entre sí. 
+- **CRÍTICO en `shared/ui`:** Un componente NO puede importar a su hermano (ej. `select` no importa `input`). Si comparten lógica visual, extráela a `shared/ui/_common`.
 - **Public API:** Solo se importa contenido a través del `index.ts` de cada slice/segmento.
 
-# Shared Layer & UI Organization
-- **Sin Slices:** `shared` solo tiene segmentos técnicos (`ui`, `api`, `lib`).
-- **Organización UI:** Por familias funcionales (ej. `inputs`, `data-display`).
-- **Composición (DRY):** Usa componentes Base (ej. `_common/input-base`) para evitar duplicidad de lógica visual.
-- **Pureza:** Los componentes en `shared/ui` no tienen lógica de negocio ni peticiones de red.
+## # Shared Layer & UI (Hybrid Compound Pattern)
+- **Nomenclatura:** Categorías en plural (ej. `inputs`), componentes en **SINGULAR** y kebab-case (ej. `text-input`).
+- **Patrón de Diseño:** Usa **Compound Components** con **Complejidad Gradual**. 
+  - El componente Root debe detectar la prop `options` (Nivel 1: Auto-construcción) o `children` (Nivel 3: Composición pura).
+- **Agnosticismo:** Los componentes en `shared/ui` son puros; prohibido importar lógica de `entities` o `features`.
+- **Tipado:** Usa genéricos `<T>` para asegurar que los componentes funcionen con cualquier modelo de datos.
 
-# Coding & Quality Standards
+## # Component Directory Organization
+- **Raíz:** El archivo principal reside en la raíz de su carpeta (ej. `select/select.tsx`).
+- **Sub-componentes:** Piezas internas del patrón compuesto en sub-carpeta `/ui/` (ej. `select/ui/select-item.tsx`).
+- **Recursos Privados:** Contextos, hooks internos o estilos en carpeta `_common/` dentro de la carpeta del componente.
+- **Public API:** El `index.ts` debe usar `Object.assign` para exportar el componente compuesto unificado.
+
+## # Coding & Quality Standards
 - **Componentes:** Siempre Arrow Functions y PascalCase para UI.
-- **Nomenclatura:** `type.[nombre].ts` para tipos, `store.[nombre].ts` para Zustand, `[nombre].api.ts` para Axios, `[nombre].service.ts` para Query hooks.
+- **Nomenclatura de Archivos:**
+  - `type.[nombre].ts` para tipos.
+  - `store.[nombre].ts` para Zustand.
+  - `[nombre].api.ts` para servicios Axios.
+  - `[nombre].service.ts` para hooks de TanStack Query.
 - **Error Handling:** Gestionar obligatoriamente estados de `loading` y `error` en cada interacción asíncrona.
-- **Testing:** Cada componente o lógica compleja debe incluir su archivo `.test.tsx` o `.spec.ts` usando Vitest.
-- **Seguridad:** Prohibido el uso de `any`. Usa Tipos Estrictos.
+- **Seguridad:** Prohibido el uso de `any`. Usa Tipos Estrictos y validación con Zod para respuestas de API.
+- **Testing:** Cada lógica compleja debe incluir su archivo `.test.tsx` o `.spec.ts` usando Vitest.
 
-# Workflow Rules
-1. **Explicación:** Antes de codear, resume los pasos lógicos.
-2. **Refactor:** Archivos > 250 líneas deben segmentarse.
+## # Workflow Rules
+1. **Explicación:** Antes de generar código, resume los pasos lógicos.
+2. **Refactor:** Archivos que superen las 250 líneas deben ser segmentados.
 3. **Contratos:** Valida datos de API con Zod y transfórmalos a modelos de UI antes de consumirlos.
-4. **Documentación:** Crea un `README.md` breve en cada nuevo slice explicando su propósito.
+4. **Documentación:** Crea un `README.md` breve en cada nuevo slice explicando su propósito y nivel de complejidad.
 
-# Critical Prohibitions
-- NO bibliotecas de UI externas sin permiso.
-- NO Atomic Design (usar jerarquía FSD).
-- NO importar archivos internos de un slice (solo vía Public API).
-- NO usar tipos del backend directamente en la UI sin pasar por un adaptador/modelo.
+## # Critical Prohibitions
+- **NO** bibliotecas de UI externas (mantener pureza de la plantilla).
+- **NO** Atomic Design (usar estrictamente la jerarquía FSD).
+- **NO** importar archivos internos de un slice (solo vía Public API/index.ts).
+- **NO** usar tipos del backend directamente en la UI sin pasar por un adaptador o modelo.
 
-
-# Hierarchical Reference System (Chain of Command)
-Para cualquier creación o refactorización, sigue este orden de prioridad:
-
-1. PRECEDENCIA MÁXIMA (Documentación): Si existe un bloque <example> en el README del slice o en la documentación técnica, síguelo estrictamente para esa tarea específica.
-2. REFERENCIA DE ESTILO (@gold-standard): En ausencia de documentación específica, busca archivos marcados con el comentario `@gold-standard`. Imita su lógica, manejo de errores y patrones de TypeScript.
-3. ESTRUCTURA BASE (.example): Usa los archivos con extensión `.example` únicamente como molde para la estructura de archivos y boilerplate inicial (imports y exportación).
+## # Hierarchical Reference System (Chain of Command)
+1. **PRECEDENCIA MÁXIMA (Documentación):** Bloques `<example>` en README o documentación técnica del proyecto.
+2. **REFERENCIA DE ESTILO (@gold-standard):** Imita la lógica, manejo de errores y patrones de archivos marcados con este comentario.
+3. **ESTRUCTURA BASE (.example):** Usa archivos con extensión `.example` como molde para boilerplate e imports iniciales.
