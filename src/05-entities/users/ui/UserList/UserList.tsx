@@ -1,6 +1,6 @@
 import { useUsersList } from "@entities/users/api/use-user";
-import { Loading } from "@ui-base/feedback/Loading";
-import { ErrorDisplay } from "@ui-modules/data-display/error-display";
+import { Loading } from "@ui/feedback/Loading";
+import { ErrorDisplay } from "@ui/data-display/error-display";
 import { UserTable } from "./UserTable/UserTable";
 
 export function UserList() {

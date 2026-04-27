@@ -1,9 +1,11 @@
 import { forwardRef, useState } from "react";
-import { Input } from "@src/06-shared/ui/base/input";
-import { InputProps } from "@shared/ui/base/input";
-import { EyeOffIcon, LockIcon, ViewIcon } from "@shared/ui/base/Icons";
+import { Input } from "@ui/input";
+import { InputProps } from "@ui/input/model/types";
+import { EyeOffIcon, LockIcon, ViewIcon } from "@ui/Icons";
 
-interface InputPasswordProps extends Omit<InputProps, "type" | "rightIcon" | "leftIcon" | "onRightIconClick"> {}
+interface InputPasswordProps extends Omit<InputProps, "type" | "rightIcon" | "leftIcon" | "onRightIconClick"> {
+  successColor?: boolean;
+}
 
 export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
   (props, ref) => {
@@ -11,6 +13,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       name = "password",
       label = "Contraseña",
       placeholder = "Ingrese la contraseña",
+      successColor,
       ...rest
     } = props;
 
@@ -23,6 +26,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
         name={name}
         label={label}
         placeholder={placeholder}
+        success={successColor}
         leftIcon={<LockIcon size={21} />}
         rightIcon={
           showPassword ? <EyeOffIcon size={20} /> : <ViewIcon size={20} />

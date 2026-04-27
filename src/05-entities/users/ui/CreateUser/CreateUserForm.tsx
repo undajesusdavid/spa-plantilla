@@ -1,7 +1,7 @@
-import { FieldGroup } from "@ui-modules/form-groups/field-group";
-import { Input } from "@ui-base/inputs/Input";
-import { Form } from "@ui-base/form";
+import { FieldGroup } from "@ui/form-groups/field-group";
+import { Form } from "@ui/form";
 import { CreateUserRequest } from "@src/05-entities/users/model/schemas.user";
+import { InputPassword, InputUserEmail, InputUsername } from "../inputs";
   
 
 export interface CreateUserFormProps {
@@ -30,34 +30,29 @@ export function CreateUserForm({
         orientation="vertical"
         columns={1}
       >
-        <Input
-          label="Usuario"
+        <InputUsername
           name="username"
-          placeholder="Ej. jdoe"
           required
           error={inputErrors.username}
         />
 
-        <Input
-          label="Contraseña"
+        <InputPassword
           name="password"
-          type="password"
           required
           error={inputErrors.password}
         />
 
-        <Input
+        <InputPassword
           label="Confirmar Contraseña"
           name="passwordConfirm"
-          type="password"
+          placeholder="Confirma la contraseña"
           required
           error={inputErrors.passwordConfirm}
         />
 
-        <Input
+        <InputUserEmail
           label="Email"
           name="email"
-          type="email"
           required
           error={inputErrors.email}
         />

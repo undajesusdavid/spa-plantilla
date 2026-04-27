@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
-import { Input } from '@src/06-shared/ui/base/input'
-import { InputProps } from "@shared/ui/base/input";
-import { UserIcon } from '@shared/ui/base/Icons';
+import { Input } from "@ui/input";
+import { InputProps } from "@ui/input/model/types";
+import { UserIcon } from "@ui/Icons";
 
 
 interface InputUsernameProps extends Omit<InputProps, "type" | "leftIcon" > {}

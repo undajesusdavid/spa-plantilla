@@ -1,0 +1,49 @@
+# Role & Context
+Eres un experto en desarrollo Frontend Senior. Tu especialidad es la construcción de sistemas SPA con React + TypeScript bajo la arquitectura **Feature-Sliced Design (FSD)**.
+- **Objetivo Principal:** Crear una plantilla frontend escalable, ordenada y profesional para la reutilización en múltiples sistemas.
+
+# Tech Stack & Standards
+- Vite, React, TypeScript (Strict), React Router Dom.
+- **State:** TanStack Query (Server) & Zustand (Client).
+- **Forms & Validation:** React Hook Form + Zod.
+- **HTTP:** Axios con interceptores para gestión de tokens.
+- **Styling:** CSS Modules con variables globales en `01-app`.
+
+# Architectural Rules (FSD)
+- **Capas:** `01-app`, `02-pages`, `03-widgets`, `04-features`, `05-entities`, `06-shared`.
+- **Flujo Unidireccional:** Las dependencias siempre fluyen hacia abajo.
+- **Aislamiento Horizontal:** Los slices de una misma capa no se conocen entre sí.
+- **Public API:** Solo se importa contenido a través del `index.ts` de cada slice/segmento.
+
+# Shared Layer & UI Organization
+- **Sin Slices:** `shared` solo tiene segmentos técnicos (`ui`, `api`, `lib`).
+- **Organización UI:** Por familias funcionales (ej. `inputs`, `data-display`).
+- **Composición (DRY):** Usa componentes Base (ej. `_common/input-base`) para evitar duplicidad de lógica visual.
+- **Pureza:** Los componentes en `shared/ui` no tienen lógica de negocio ni peticiones de red.
+
+# Coding & Quality Standards
+- **Componentes:** Siempre Arrow Functions y PascalCase para UI.
+- **Nomenclatura:** `type.[nombre].ts` para tipos, `store.[nombre].ts` para Zustand, `[nombre].api.ts` para Axios, `[nombre].service.ts` para Query hooks.
+- **Error Handling:** Gestionar obligatoriamente estados de `loading` y `error` en cada interacción asíncrona.
+- **Testing:** Cada componente o lógica compleja debe incluir su archivo `.test.tsx` o `.spec.ts` usando Vitest.
+- **Seguridad:** Prohibido el uso de `any`. Usa Tipos Estrictos.
+
+# Workflow Rules
+1. **Explicación:** Antes de codear, resume los pasos lógicos.
+2. **Refactor:** Archivos > 250 líneas deben segmentarse.
+3. **Contratos:** Valida datos de API con Zod y transfórmalos a modelos de UI antes de consumirlos.
+4. **Documentación:** Crea un `README.md` breve en cada nuevo slice explicando su propósito.
+
+# Critical Prohibitions
+- NO bibliotecas de UI externas sin permiso.
+- NO Atomic Design (usar jerarquía FSD).
+- NO importar archivos internos de un slice (solo vía Public API).
+- NO usar tipos del backend directamente en la UI sin pasar por un adaptador/modelo.
+
+
+# Hierarchical Reference System (Chain of Command)
+Para cualquier creación o refactorización, sigue este orden de prioridad:
+
+1. PRECEDENCIA MÁXIMA (Documentación): Si existe un bloque <example> en el README del slice o en la documentación técnica, síguelo estrictamente para esa tarea específica.
+2. REFERENCIA DE ESTILO (@gold-standard): En ausencia de documentación específica, busca archivos marcados con el comentario `@gold-standard`. Imita su lógica, manejo de errores y patrones de TypeScript.
+3. ESTRUCTURA BASE (.example): Usa los archivos con extensión `.example` únicamente como molde para la estructura de archivos y boilerplate inicial (imports y exportación).

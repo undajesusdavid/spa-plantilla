@@ -1,6 +1,6 @@
-import SmallButton from "@ui-base/buttons/small-button";
-import { Column, Table } from "@ui-modules/data-display/Table";
-import { User } from "@entities/users/types";
+import SmallButton from "@ui/buttons/small-button";
+import { Column, Table } from "@ui/data-display/Table";
+import { User } from "@entities/users/model";
 import styles from "../UserList.module.css";
 import { ActionsTable } from "./ActionsTable";
 

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import { Input } from '@src/06-shared/ui/base/input'
-import { InputProps } from "@shared/ui/base/input";
+import { Input } from "@ui/input";
+import { InputProps } from "@ui/input/model/types";
 
 
 interface InputUserEmailProps extends Omit<InputProps, "type"  > {}

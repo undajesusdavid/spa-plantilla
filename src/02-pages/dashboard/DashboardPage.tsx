@@ -1,5 +1,5 @@
-import { NavBar } from "@ui-modules/navigation/nav-bar";
-import SmallButton from "@ui-base/buttons/small-button";
+import { NavBar } from "@ui/navigation/nav-bar";
+import SmallButton from "@ui/buttons/small-button";
 
 export default function DashboardPage() {
   const myLinks = [

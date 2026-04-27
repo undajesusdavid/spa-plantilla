@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSessionStore } from "@entities/session/model";
 import { AuthUserRequestDto } from "../model/schema";
 import { loginMutation } from "../api/auth-mutations";
-import { BigButton } from "@ui-base/buttons/big-button";
+import { BigButton } from "@ui/buttons/big-button";
 import styles from "./login-by-username.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
