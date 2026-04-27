@@ -1,4 +1,4 @@
-import { useCreateUserForm } from "../lib/use-create-user-form";
+import { useFormUserRegister } from "./useFormUserRegister";
 import { Button } from "@ui/buttons/Button";
 import { ButtonContainer } from "@ui/buttons/button-container";
 import { FieldGroup } from "@ui/form-groups/field-group";
@@ -9,8 +9,8 @@ interface CreateUserFeatureProps {
   onCancel?: () => void;
 }
 
-export const CreateUserFeature = ({ onSuccess, onCancel }: CreateUserFeatureProps) => {
-  const { form, onSubmit, isLoading } = useCreateUserForm({ onSuccess });
+export const FormUserRegister = ({ onSuccess, onCancel }: CreateUserFeatureProps) => {
+  const { form, onSubmit, isLoading } = useFormUserRegister({ onSuccess });
   const { register, formState: { errors } } = form;
 
   return (

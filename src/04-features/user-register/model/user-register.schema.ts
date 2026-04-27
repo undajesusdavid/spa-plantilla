@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { username, password, email } from "@entities/users/model/schemas.user";
 
-export const CreateUserSchema = z.object({
+export const UserRegisterRequest = z.object({
   username: username,
   email: email,
   password: password,
@@ -11,4 +11,7 @@ export const CreateUserSchema = z.object({
   path: ["passwordConfirm"],
 });
 
-export type CreateUserFormValues = z.infer<typeof CreateUserSchema>;
+
+
+
+export type UserRegisterType = z.infer<typeof UserRegisterRequest>;

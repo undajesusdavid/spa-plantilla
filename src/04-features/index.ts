@@ -1,1 +1,1 @@
-export * from "./auth-by-username/ui/login-by-username"
+export * from "./auth/ui/login-by-username/LoginFormByUsername"
