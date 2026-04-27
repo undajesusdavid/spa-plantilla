@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import { Input } from "@ui/input";
-import { InputProps } from "@ui/input/model/types";
+import { Input } from "@ui/form-controls/input";
+import { InputProps } from "@ui/form-controls/input/model/types";
 import { UserIcon } from "@ui/Icons";
 
 

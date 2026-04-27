@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
-import { Input } from "@ui/input";
-import { InputProps } from "@ui/input/model/types";
+import { Input } from "@ui/form-controls/input";
+import { InputProps } from "@ui/form-controls/input/model/types";
 import { EyeOffIcon, LockIcon, ViewIcon } from "@ui/Icons";
 
 interface InputPasswordProps extends Omit<InputProps, "type" | "rightIcon" | "leftIcon" | "onRightIconClick"> {

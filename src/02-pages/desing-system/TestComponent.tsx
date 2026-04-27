@@ -1,4 +1,4 @@
-import { Select } from "@src/06-shared/ui/select";
+import { Select } from "@ui/form-controls/select";
 const SearchIcon = () => (
   <svg
     width="24"
