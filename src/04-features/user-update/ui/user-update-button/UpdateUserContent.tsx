@@ -6,67 +6,55 @@ import { useEffect } from "react";
 import { useModal } from "@src/06-shared/lib/providers/ModalProvider";
 import { Loading } from "@src/06-shared/ui/feedback/Loading";
 import { useForm } from "react-hook-form";
-import { InputUserEmail, InputUsername } from "@src/05-entities/user";
-import { Checkbox } from "@src/06-shared/ui/form-controls/checkbox";
-
-interface UpdateUserContentProps {
-  userId: string;
-  userName?: string;
-  userEmail?: string;
-  userRole?: string;
-  userActive?: boolean;
-}
-
-interface FormValues {
-  name: string;
-  email: string;
-  active: boolean;
-}
+import {
+  InputCheckUserActive,
+  InputUserEmail,
+  InputUsername,
+} from "@src/05-entities/user";
+import { UserUpdateRequestType } from "../../model/user-update.schema";
 
 export const UpdateUserContent = ({
   userId,
-  userName,
-  userEmail,
-  userActive,
-}: UpdateUserContentProps) => {
+  name: userName,
+  email: userEmail,
+  active: userActive,
+}: UserUpdateRequestType) => {
   const { addToast } = useToast();
   const { mutate, isPending } = useUserUpdateMutation();
   const { updateOptions, closeModal } = useModal();
+
+  const defaultValues = {
+    userId,
+    name: userName || "",
+    email: userEmail || "",
+    active: userActive || false,
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      name: userName || "",
-      email: userEmail || "",
-      active: userActive || false,
-    },
-  });
+  } = useForm<UserUpdateRequestType>({ defaultValues });
 
   useEffect(() => {
     updateOptions({ restrictClose: isPending });
   }, [isPending, updateOptions]);
 
-  const onSubmit = (data: FormValues) => {
-    mutate(
-      { userId, ...data },
-      {
-        onSuccess: () => {
-          addToast("success", "Usuario actualizado correctamente", "Éxito");
-          closeModal();
-        },
-        onError: (err) => {
-          addToast(
-            "error",
-            err.message || "Error al actualizar el usuario",
-            "Error",
-          );
-          closeModal();
-        },
+  const onSubmit = (data: UserUpdateRequestType) => {
+    mutate(data, {
+      onSuccess: () => {
+        addToast("success", "Usuario actualizado correctamente", "Éxito");
+        closeModal();
       },
-    );
+      onError: (err) => {
+        addToast(
+          "error",
+          err.message || "Error al actualizar el usuario",
+          "Error",
+        );
+        closeModal();
+      },
+    });
   };
 
   return (
@@ -75,36 +63,24 @@ export const UpdateUserContent = ({
         <Loading label="Actualizando usuario..." />
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div style={{ marginBottom: "16px" }}>
-            <InputUsername
-              {...register("name", { required: "El nombre es requerido" })}
-              error={errors.name?.message}
-            />
-          </div>
-          <div style={{ marginBottom: "16px" }}>
-            <InputUserEmail
-              {...register("email", {
-                required: "El email es requerido",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Email inválido",
-                },
-              })}
-              error={errors.email?.message}
-            />
-          </div>
-          <div style={{ marginBottom: "16px" }}>
-            <Checkbox
-              showDynamicLabel
-              activeLabel="Estatus Activo"
-              inactiveLabel="Estatus Inactivo"
-              
-              checkboxSize="medium"
-              orientation="column"
-              labelPosition="right"
-              helperText="El usuario podrá iniciar sesión si está activo"
-            />
-          </div>
+          <InputUsername
+            {...register("name", { required: "El nombre es requerido" })}
+            error={errors.name?.message}
+          />
+
+          <InputUserEmail
+            {...register("email", {
+              required: "El email es requerido",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Email inválido",
+              },
+            })}
+            error={errors.email?.message}
+          />
+
+          <InputCheckUserActive {...register("active")} />
+            
           <ButtonContainer>
             <Button
               type="button"

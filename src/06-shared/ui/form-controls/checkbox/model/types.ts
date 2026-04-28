@@ -28,6 +28,7 @@ export interface CheckboxLabelProps {
   isRequired?: boolean;
   className?: string;
   handleClick?: () => void;
+  disabled?: boolean;
 }
 
 export interface CheckboxErrorProps {

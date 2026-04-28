@@ -27,10 +27,10 @@ export const UpdateUserButton = ({
       title: "Actualizar Usuario",
       content: (
         <UpdateUserContent
-          userName={userName}
           userId={userId}
-          userEmail={userEmail}
-          userActive={userActive}
+          name={userName}
+          email={userEmail}
+          active={userActive}
         />
       )
     });
