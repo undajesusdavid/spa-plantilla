@@ -31,7 +31,7 @@ export const DeleteUserButton = ({
 
   return (
     <Button type="button" size="sm" variant="danger" onClick={handleOpenModal}>
-      <TrashIcon className="w-5 h-5" />
+      <TrashIcon size={18}  />
     </Button>
   );
 };

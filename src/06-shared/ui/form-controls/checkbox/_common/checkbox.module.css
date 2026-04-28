@@ -1,0 +1,170 @@
+.checkboxContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.checkboxContainer.row {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkboxContainer.column {
+  flex-direction: column;
+}
+
+.fieldGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+
+/* Switch styles - Toggle Switch */
+.switchContainer {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.switchContainer.small {
+  width: 36px;
+  height: 20px;
+}
+
+.switchContainer.large {
+  width: 60px;
+  height: 32px;
+}
+
+.switchTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.switchContainer.checked .switchTrack {
+  background-color: #3b82f6;
+}
+
+.switchContainer.disabled .switchTrack {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.switchContainer.disabled {
+  cursor: not-allowed;
+}
+
+.switchContainer.error .switchTrack {
+  background-color: #ef4444;
+}
+
+.switchContainer.success .switchTrack {
+  background-color: #10b981;
+}
+
+.switchThumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.switchContainer.small .switchThumb {
+  width: 14px;
+  height: 14px;
+}
+
+.switchContainer.large .switchThumb {
+  width: 26px;
+  height: 26px;
+}
+
+.switchContainer.checked .switchThumb {
+  transform: translateX(22px);
+}
+
+.switchContainer.small.checked .switchThumb {
+  transform: translateX(16px);
+}
+
+.switchContainer.large.checked .switchThumb {
+  transform: translateX(28px);
+}
+
+.switchContainer.focused .switchTrack {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Label */
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkboxLabel.required::after {
+  content: "*";
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.checkboxLabel.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Error */
+.checkboxError {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 2px;
+}
+
+.checkboxError.success {
+  color: #10b981;
+}
+
+/* Helper Text */
+.checkboxHelperText {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* Label position left */
+.checkboxContainer.labelLeft .fieldGroup {
+  flex-direction: row-reverse;
+}

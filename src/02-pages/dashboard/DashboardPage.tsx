@@ -1,5 +1,6 @@
 import { NavBar } from "@ui/navigation/nav-bar";
 import SmallButton from "@ui/buttons/small-button";
+import { Button } from "@src/06-shared/ui/buttons/button";
 
 export default function DashboardPage() {
   const myLinks = [
@@ -19,8 +20,8 @@ export default function DashboardPage() {
         links={myLinks}
         actions={
           <>
-            <SmallButton variant="ghost">Entrar</SmallButton>
-            <SmallButton variant="primary">Suscribirse</SmallButton>
+            <Button size="xsm" variant="ghost">Entrar</Button>
+            <Button size="xsm" variant="primary">Suscribirse</Button>
           </>
         }
       />

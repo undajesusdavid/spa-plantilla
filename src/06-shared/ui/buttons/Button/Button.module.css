@@ -149,9 +149,14 @@
 }
 
 /* --- TAMAÑOS --- */
+
+.xsm {
+    padding: 3px 6px;
+    font-size: 0.7.5rem;
+}
 .sm {
     padding: 4px 10px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .md {

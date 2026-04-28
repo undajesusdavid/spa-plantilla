@@ -12,11 +12,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | "success"
     | "outline-danger"
     | "info";
-  size?: "sm" | "md" | "lg";
+  size?: "xsm" | "sm" | "md" | "lg";
   icon?: ReactNode;
   fullWidth?: boolean;
-  isLoading?: boolean; // <-- Nueva prop
-  loadingText?: string; // <-- Opcional: para cambiar el texto al cargar
+  isLoading?: boolean; 
+  loadingText?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({

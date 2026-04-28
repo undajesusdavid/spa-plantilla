@@ -1,11 +1,12 @@
 import { Table } from "@ui/data-display/table";
 import { Loading } from "@ui/feedback/Loading";
 import { ErrorDisplay } from "@ui/data-display/error-display";
-import { useUserTable } from "./useUserTable";
-import { ActionsCell } from "./ui/ActionsCell";
+import { DeleteUserButton } from "@features/user-delete";
+import { useGetUsers } from "@entities/user";
+import { UpdateUserButton } from "@src/04-features/user-update";
 
 export const UserTable = () => {
-  const { users, isLoading, serverError } = useUserTable();
+  const { data: users, isLoading, error: serverError } = useGetUsers();
 
   if (isLoading) return <Loading label="Cargando Lista de Usuarios" />;
   if (serverError) return <ErrorDisplay />;
@@ -21,11 +22,25 @@ export const UserTable = () => {
     {
       key: "actions",
       header: "Actions",
-      render: (user: any) => <ActionsCell user={user} />,
+      render: (user: any) => (
+        <>
+          <DeleteUserButton userId={user.id} userName={user.username} />
+          <UpdateUserButton
+            userId={user.id}
+            userName={user.username}
+            userEmail={user.email}
+            userActive={user.active}
+          />
+        </>
+      ),
     },
   ];
 
   return (
-    <Table data={users} columns={columns} emptyMessage="No hay usuarios disponibles" />
+    <Table
+      data={users}
+      columns={columns}
+      emptyMessage="No hay usuarios disponibles"
+    />
   );
 };

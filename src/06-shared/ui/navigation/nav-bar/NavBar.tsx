@@ -8,7 +8,7 @@ interface NavLink {
 }
 
 interface NavbarProps {
-  logo: ReactNode;
+  logo?: ReactNode;
   links: NavLink[];
   actions?: ReactNode;
 }
