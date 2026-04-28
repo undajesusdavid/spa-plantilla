@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateUserRequest } from "@entities/users/model/schemas.user";
+import { UserRegisterRequestType } from "../model/user-register.schema";
 import { userRegisterApi } from "./user-register.api";
 
 export const useUserRegisterMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: CreateUserRequest) => userRegisterApi.createUser(data),
+    mutationFn: (data: UserRegisterRequestType) => userRegisterApi.createUser(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },

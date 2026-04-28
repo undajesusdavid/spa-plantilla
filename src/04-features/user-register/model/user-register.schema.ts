@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { username, password, email } from "@entities/users/model/schemas.user";
+import { username, password, email } from "@entities/user";
 
 export const UserRegisterRequest = z.object({
   username: username,
@@ -14,4 +14,4 @@ export const UserRegisterRequest = z.object({
 
 
 
-export type UserRegisterType = z.infer<typeof UserRegisterRequest>;
+export type UserRegisterRequestType = z.infer<typeof UserRegisterRequest>;

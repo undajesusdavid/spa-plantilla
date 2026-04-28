@@ -1,8 +1,8 @@
 import { apiClient } from "@shared/api";
-import { UserRegisterType } from "../model/user-register.schema";
+import { UserRegisterRequestType } from "../model/user-register.schema";
 
 export const userRegisterApi = {
-    createUser: async (body: UserRegisterType) => {
+    createUser: async (body: UserRegisterRequestType) => {
         const { data } = await apiClient.post('/users/create', body);
         return data;
     },

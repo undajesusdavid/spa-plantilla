@@ -1,8 +1,8 @@
 import { useFormUserRegister } from "./useFormUserRegister";
-import { Button } from "@ui/buttons/Button";
-import { ButtonContainer } from "@ui/buttons/button-container";
+import { Button } from "@ui/buttons/button";
 import { FieldGroup } from "@ui/form-groups/field-group";
-import { InputPassword, InputUserEmail, InputUsername } from "@src/05-entities";
+import { ButtonContainer } from "@ui/buttons/button-container";
+import { InputPassword, InputUserEmail, InputUsername } from "@entities/user";
 
 interface CreateUserFeatureProps {
   onSuccess?: () => void;

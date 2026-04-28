@@ -1,5 +1,5 @@
 import { useModal } from "@context/ModalContext";
-import { Button } from "@ui/buttons/Button";
+import { Button } from "@src/06-shared/ui/buttons/button";
 
 interface ConfirmDeleteProps {
   title?: string;

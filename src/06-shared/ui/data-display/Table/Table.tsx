@@ -1,54 +1,46 @@
-import { ReactNode } from "react";
-import styles from "./Table.module.css";
+import { TableProps } from './table.types';
+import { TableProvider } from './_common/table.context';
+import { TableHeader } from './ui/table-header';
+import { TableBody } from './ui/table-body';
+import { TableRow } from './ui/table-row';
+import { TableCell } from './ui/table-cell';
+import styles from './_common/table.module.css';
+import { ReactNode } from 'react';
 
-export interface Column<T> {
-  header: string;
-  key: keyof T | string;
-  render?: (item: T) => ReactNode;
-  width?: string;
-}
-
-interface Props<T> {
-  data: T[];
-  columns: Column<T>[];
-  keyExtractor: (item: T) => string | number;
-}
-
-export function Table<T>({ data, columns, keyExtractor }: Props<T>) {
+export const Table = <T,>({ data, columns, children, className }: TableProps<T>) => {
   return (
-    <div className={styles.container}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            {columns.map((col, i) => (
-              <th key={i} style={{ width: col.width }}>
-                {col.header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.length > 0 ? (
-            data.map((item) => (
-              <tr key={keyExtractor(item)}>
-                {columns.map((col, i) => (
-                  <td key={i}>
-                    {col.render
-                      ? col.render(item)
-                      : (item[col.key as keyof T] as ReactNode)}
-                  </td>
+    <TableProvider>
+      <div className={styles.wrapper}>
+        <table className={`${styles.table} ${className ?? ''}`}>
+          {/* Lógica Híbrida */}
+          {data && columns ? (
+            <>
+              <TableHeader>
+                <TableRow>
+                  {columns.map((col) => (
+                    <TableCell key={String(col.key)} variant="head">
+                      {col.header}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {data.map((item, idx) => (
+                  <TableRow key={idx}>
+                    {columns.map((col) => (
+                      <TableCell key={String(col.key)}>
+                        {col.render ? col.render(item) : (item[col.key as keyof T] as ReactNode)}
+                      </TableCell>
+                    ))}
+                  </TableRow>
                 ))}
-              </tr>
-            ))
+              </TableBody>
+            </>
           ) : (
-            <tr>
-              <td colSpan={columns.length} className={styles.empty}>
-                No se encontraron registros.
-              </td>
-            </tr>
+            children
           )}
-        </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+    </TableProvider>
   );
-}
+};

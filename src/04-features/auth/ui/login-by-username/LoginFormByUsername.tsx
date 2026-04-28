@@ -1,5 +1,5 @@
-import { InputPassword } from "@entities/users/ui/inputs/InputPassword";
-import { InputUsername } from "@entities/users/ui/inputs/InputUsername";
+import { InputPassword } from "@src/05-entities/user/ui/user-inputs/InputPassword";
+import { InputUsername } from "@src/05-entities/user/ui/user-inputs/InputUsername";
 import { BigButton } from "@ui/buttons/big-button";
 import { useLoginFormByUsername } from "./useLoginFormByUsername";
 import styles from "./LoginFormByUsername.module.css";
