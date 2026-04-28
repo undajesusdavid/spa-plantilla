@@ -1,14 +1,13 @@
 import { Button } from "@ui/buttons/button";
 import { PencilIcon, TrashIcon, ViewIcon } from "@ui/Icons";
 import { userType } from "@entities/user";
-
+import { DeleteUserButton } from "@features/user-delete";
 
 interface ActionsTableProps {
   user: userType;
 }
 
-export function ActionsTable({ user }: ActionsTableProps) {
- 
+export function ActionsCell({ user }: ActionsTableProps) {
   
   return (
     < >
@@ -22,6 +21,8 @@ export function ActionsTable({ user }: ActionsTableProps) {
         <PencilIcon size={"16px"} />
       </Button>
 
+      {/* Boton para eliminar usuarios */}
+      <DeleteUserButton userId={user.id} userName={user.username} />
     </>
   );
 }

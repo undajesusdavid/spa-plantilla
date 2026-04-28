@@ -1,0 +1,25 @@
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.statusIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.statusIndicator.active {
+  background-color: #4caf50;
+}
+
+.statusIndicator.inactive {
+  background-color: #f44336;
+}
+
+.statusText {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #757575);
+}

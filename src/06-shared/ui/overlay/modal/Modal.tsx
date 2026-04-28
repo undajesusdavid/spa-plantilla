@@ -9,6 +9,7 @@ interface ModalProps {
   children: React.ReactNode;
   footer?: React.ReactNode;
   width?: string;
+  restrictClose?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -17,6 +18,7 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   children,
   footer,
+  restrictClose = false,
   width = "450px",
 }) => {
   // Cerrar con la tecla Esc
@@ -31,7 +33,7 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
+    <div className={styles.overlay} onClick={ !restrictClose ? onClose : undefined }>
       <div
         className={styles.modal}
         onClick={(e) => e.stopPropagation()}
@@ -41,7 +43,7 @@ export const Modal: React.FC<ModalProps> = ({
           <h2 className={styles.title}>{title}</h2>
           <button
             className={styles.closeBtn}
-            onClick={onClose}
+            onClick={!restrictClose ? onClose : undefined}
             aria-label="Cerrar"
           >
             <CloseIcon size={18} />

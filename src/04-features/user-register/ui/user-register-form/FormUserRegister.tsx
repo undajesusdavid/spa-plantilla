@@ -1,5 +1,5 @@
 import { useFormUserRegister } from "./useFormUserRegister";
-import { Button } from "@ui/buttons/button";
+import { Button } from "@src/06-shared/ui/buttons/button";
 import { FieldGroup } from "@ui/form-groups/field-group";
 import { ButtonContainer } from "@ui/buttons/button-container";
 import { InputPassword, InputUserEmail, InputUsername } from "@entities/user";

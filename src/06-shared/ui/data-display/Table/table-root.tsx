@@ -7,7 +7,7 @@ import { TableCell } from './ui/table-cell';
 import styles from './_common/table.module.css';
 import { ReactNode } from 'react';
 
-export const Table = <T,>({ data, columns, children, className }: TableProps<T>) => {
+export const TableRoot = <T,>({ data, columns, children, className }: TableProps<T>) => {
   return (
     <TableProvider>
       <div className={styles.wrapper}>

@@ -1,4 +1,4 @@
-import { Table as TableRoot } from './table';
+import { TableRoot } from './table-root';
 import { TableHeader } from './ui/table-header';
 import { TableBody } from './ui/table-body';
 import { TableRow } from './ui/table-row';

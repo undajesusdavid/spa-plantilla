@@ -2,6 +2,7 @@ import { Table } from "@ui/data-display/table";
 import { Loading } from "@ui/feedback/Loading";
 import { ErrorDisplay } from "@ui/data-display/error-display";
 import { useUserTable } from "./useUserTable";
+import { ActionsCell } from "./ui/ActionsCell";
 
 
 export const UserTable = () => {
@@ -17,6 +18,7 @@ export const UserTable = () => {
           <Table.Cell>Email</Table.Cell>
           <Table.Cell>Username</Table.Cell>
           <Table.Cell>Active</Table.Cell>
+          <Table.Cell>Actions</Table.Cell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -25,6 +27,9 @@ export const UserTable = () => {
             <Table.Cell>{user.email}</Table.Cell>
             <Table.Cell>{user.username}</Table.Cell>
             <Table.Cell>{user.active ? "Yes" : "No"}</Table.Cell>
+            <Table.Cell >
+              <ActionsCell user={user} />
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>

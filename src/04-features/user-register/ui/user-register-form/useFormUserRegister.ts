@@ -20,7 +20,7 @@ export const useFormUserRegister = ({ onSuccess }: UseFormUserRegisterProps = {}
       password: "",
       passwordConfirm: "",
     },
-    mode: "onTouched",
+    mode: "onChange",
   });
 
   const onSubmit = form.handleSubmit((data) => {

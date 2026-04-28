@@ -7,10 +7,12 @@ interface ModalOptions {
   content: React.ReactNode;
   footer?: React.ReactNode;
   width?: string;
+  restrictClose?: boolean;
 }
 
 interface ModalContextType {
   openModal: (options: ModalOptions) => void;
+  updateOptions: (options: Partial<ModalOptions>) => void;
   closeModal: () => void;
 }
 
@@ -21,6 +23,10 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [modalOptions, setModalOptions] = useState<ModalOptions | null>(null);
 
+  const updateOptions = useCallback((options: Partial<ModalOptions>) => {
+    setModalOptions((prev) => (prev ? { ...prev, ...options } : null));
+  }, []);
+
   const openModal = useCallback((options: ModalOptions) => {
     setModalOptions(options);
   }, []);
@@ -30,7 +36,7 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   return (
-    <ModalContext.Provider value={{ openModal, closeModal }}>
+    <ModalContext.Provider value={{ openModal, updateOptions, closeModal }}>
       {children}
       {modalOptions &&
         typeof document !== "undefined" &&
@@ -41,6 +47,7 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({
             title={modalOptions.title}
             footer={modalOptions.footer}
             width={modalOptions.width}
+            restrictClose={modalOptions.restrictClose}
           >
             {modalOptions.content}
           </Modal>,
