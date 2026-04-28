@@ -11,6 +11,7 @@ export interface TableProps<T> {
     columns?: Column<T>[]; // Nivel 1
     children?: ReactNode;  // Nivel 3
     className?: string;
+    emptyMessage?: string;
 }
 
 export interface TableContextProps {

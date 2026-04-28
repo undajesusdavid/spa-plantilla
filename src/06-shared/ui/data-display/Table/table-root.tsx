@@ -7,7 +7,10 @@ import { TableCell } from './ui/table-cell';
 import styles from './_common/table.module.css';
 import { ReactNode } from 'react';
 
-export const TableRoot = <T,>({ data, columns, children, className }: TableProps<T>) => {
+export const TableRoot = <T,>(props: TableProps<T>) => {
+  const { data, columns, children, className, emptyMessage = 'No hay datos disponibles' } = props;
+  const hasData = data && data.length > 0;
+
   return (
     <TableProvider>
       <div className={styles.wrapper}>
@@ -25,15 +28,23 @@ export const TableRoot = <T,>({ data, columns, children, className }: TableProps
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data.map((item, idx) => (
-                  <TableRow key={idx}>
-                    {columns.map((col) => (
-                      <TableCell key={String(col.key)}>
-                        {col.render ? col.render(item) : (item[col.key as keyof T] as ReactNode)}
-                      </TableCell>
-                    ))}
+                {hasData ? (
+                  data.map((item, idx) => (
+                    <TableRow key={idx}>
+                      {columns.map((col) => (
+                        <TableCell key={String(col.key)}>
+                          {col.render ? col.render(item) : (item[col.key as keyof T] as ReactNode)}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={columns.length} className={styles.empty}>
+                      {emptyMessage}
+                    </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </>
           ) : (

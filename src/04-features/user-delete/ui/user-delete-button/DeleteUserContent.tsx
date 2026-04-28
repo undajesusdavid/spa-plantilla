@@ -29,6 +29,7 @@ export const DeleteUserContent = ({
       {
         onSuccess: () => {
           addToast("success", "Usuario eliminado correctamente", "Éxito");
+          closeModal();
         },
         onError: (err) => {
           addToast(
@@ -36,6 +37,7 @@ export const DeleteUserContent = ({
             err.message || "Error al eliminar el usuario",
             "Error",
           );
+          closeModal();
         },
       },
     );

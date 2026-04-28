@@ -4,35 +4,28 @@ import { ErrorDisplay } from "@ui/data-display/error-display";
 import { useUserTable } from "./useUserTable";
 import { ActionsCell } from "./ui/ActionsCell";
 
-
 export const UserTable = () => {
   const { users, isLoading, serverError } = useUserTable();
 
   if (isLoading) return <Loading label="Cargando Lista de Usuarios" />;
   if (serverError) return <ErrorDisplay />;
 
+  const columns = [
+    { key: "email", header: "Email" },
+    { key: "username", header: "Username" },
+    {
+      key: "active",
+      header: "Active",
+      render: (user: any) => (user.active ? "Yes" : "No"),
+    },
+    {
+      key: "actions",
+      header: "Actions",
+      render: (user: any) => <ActionsCell user={user} />,
+    },
+  ];
+
   return (
-    <Table >
-      <Table.Header>
-        <Table.Row>
-          <Table.Cell>Email</Table.Cell>
-          <Table.Cell>Username</Table.Cell>
-          <Table.Cell>Active</Table.Cell>
-          <Table.Cell>Actions</Table.Cell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {users.map(user => (
-          <Table.Row key={user.id}>
-            <Table.Cell>{user.email}</Table.Cell>
-            <Table.Cell>{user.username}</Table.Cell>
-            <Table.Cell>{user.active ? "Yes" : "No"}</Table.Cell>
-            <Table.Cell >
-              <ActionsCell user={user} />
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
+    <Table data={users} columns={columns} emptyMessage="No hay usuarios disponibles" />
   );
 };

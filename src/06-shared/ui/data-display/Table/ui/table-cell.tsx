@@ -2,20 +2,33 @@ import { ReactNode } from "react";
 import { useTableContext } from "../_common/table.context";
 import styles from "../_common/table.module.css";
 
-export const TableCell = ({
-  children,
-  variant = "data",
-}: {
+interface TableCellProps {
   children: ReactNode;
   variant?: "head" | "data";
-}) => {
+  colSpan?: number;
+  className?: string;
+}
+
+export const TableCell = (props : TableCellProps) => {
+  const { children, variant = "data", colSpan, className } = props;
+
   const { dense } = useTableContext();
+  
+  const cellClasses = [
+    variant === "head" ? styles.th : styles.td,
+    dense ? styles.dense : "",
+    className ?? "",
+  ].filter(Boolean).join(" ");
 
-  const cellClasses = `${variant === "head" ? styles.th : styles.td} ${dense ? styles.dense : ""}`;
-
+ 
   return variant === "head" ? (
-    <th className={cellClasses}>{children}</th>
+    <th className={cellClasses} colSpan={colSpan}>
+      {children}
+    </th>
   ) : (
-    <td className={cellClasses}>{children}</td>
+    <td className={cellClasses} colSpan={colSpan}>
+      {children}
+    </td>
   );
 };
+  
