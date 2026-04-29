@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserRegisterRequest, UserRegisterRequestType } from "../../model/user-register.schema";
 import { useUserRegisterMutation } from "../../api/user-register.mutations";
-import { useToast } from "@context/ToastContext";
+import { useToast } from "@shared/lib/providers/ToastProvider";
 
 interface UseFormUserRegisterProps {
   onSuccess?: () => void;

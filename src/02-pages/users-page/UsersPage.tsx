@@ -1,5 +1,5 @@
 import { UserTable } from "@src/03-widgets/user-table/UserTable";
-import Page from "../Page";
+import {Page} from "@shared/ui/layouts";
 import { NavBar } from "@src/06-shared/ui/navigation/nav-bar";
 import { UserIcon } from "@src/06-shared/ui/Icons";
 import { Button } from "@src/06-shared/ui/buttons/button";

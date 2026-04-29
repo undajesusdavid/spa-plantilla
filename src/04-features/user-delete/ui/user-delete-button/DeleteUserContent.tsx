@@ -1,6 +1,6 @@
 import { ButtonContainer } from "@src/06-shared/ui/buttons/button-container/ButtonContainer";
 import Button from "@src/06-shared/ui/buttons/button/Button";
-import { useToast } from "@src/01-app/providers/ToastContext";
+import { useToast } from "@shared/lib/providers/ToastProvider";
 import { useUserDeleteMutation } from "../../api/user-delete.mutations";
 import { useEffect } from "react";
 import { useModal } from "@src/06-shared/lib/providers/ModalProvider";

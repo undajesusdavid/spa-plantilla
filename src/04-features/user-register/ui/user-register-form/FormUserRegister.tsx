@@ -9,9 +9,15 @@ interface CreateUserFeatureProps {
   onCancel?: () => void;
 }
 
-export const FormUserRegister = ({ onSuccess, onCancel }: CreateUserFeatureProps) => {
+export const FormUserRegister = ({
+  onSuccess,
+  onCancel,
+}: CreateUserFeatureProps) => {
   const { form, onSubmit, isLoading } = useFormUserRegister({ onSuccess });
-  const { register, formState: { errors } } = form;
+  const {
+    register,
+    formState: { errors },
+  } = form;
 
   return (
     <form onSubmit={onSubmit}>

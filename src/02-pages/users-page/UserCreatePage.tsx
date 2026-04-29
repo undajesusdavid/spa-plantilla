@@ -1,5 +1,5 @@
 import { FormUserRegister } from "@features/user-register";
-import Page from "../Page";
+import {Page} from "@shared/ui/layouts";
 import { useNavigate } from "react-router-dom";
 
 export default function UserCreatePage() {

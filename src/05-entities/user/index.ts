@@ -4,7 +4,6 @@ export * from "./api/user.api";
 export * from "./api/user.cache";
 
 //Exports de segmento ui
-export * from './ui/UserList';
 export * from "./ui/user-inputs";
 export * from "./ui/user-card";
 
