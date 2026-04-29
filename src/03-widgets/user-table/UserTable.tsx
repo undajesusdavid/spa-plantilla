@@ -1,5 +1,5 @@
 import { Table } from "@ui/data-display/table";
-import { Loading } from "@ui/feedback/Loading";
+import { Loading } from "@ui/feedback";
 import { ErrorDisplay } from "@ui/data-display/error-display";
 import { DeleteUserButton } from "@features/user-delete";
 import { useGetUsers } from "@entities/user";

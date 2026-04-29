@@ -3,8 +3,8 @@ import Button from "@src/06-shared/ui/buttons/button/Button";
 import { useToast } from "@shared/lib/providers/ToastProvider";
 import { useUserUpdateMutation } from "../../api/user-update.mutations";
 import { useEffect } from "react";
-import { useModal } from "@src/06-shared/lib/providers/ModalProvider";
-import { Loading } from "@src/06-shared/ui/feedback/Loading";
+import { useModal } from "@shared/lib/providers/ModalProvider";
+import { Loading } from "@ui/feedback";
 import { useForm } from "react-hook-form";
 import {
   InputCheckUserActive,

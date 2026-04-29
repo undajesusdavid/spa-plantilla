@@ -4,7 +4,7 @@ import { HeaderData, SideBarData } from "./MainLayoutProps";
 import { HEADER_LINKS } from "@config/layout.header-links";
 import { MENU_ITEMS } from "@config/layout.menu-items";
 // Hooks
-import { useSessionStore } from "@src/05-entities/session/model";
+import { useSessionStore } from "@entities/session";
 
 //imagenes
 import logo from '@assets/logotipo.png';

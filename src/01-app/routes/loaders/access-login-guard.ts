@@ -1,4 +1,4 @@
-import { useSessionStore } from "@src/05-entities/session/model";
+import { useSessionStore } from "@entities/session";
 import { redirect } from "react-router-dom";
 
 export function AccessLoginGuard() {

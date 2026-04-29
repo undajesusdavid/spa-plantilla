@@ -4,7 +4,7 @@ import { useToast } from "@shared/lib/providers/ToastProvider";
 import { useUserDeleteMutation } from "../../api/user-delete.mutations";
 import { useEffect } from "react";
 import { useModal } from "@src/06-shared/lib/providers/ModalProvider";
-import { Loading } from "@src/06-shared/ui/feedback/Loading";
+import { Loading } from "@ui/feedback";
 
 interface DeleteUserContentProps {
   userId: string;

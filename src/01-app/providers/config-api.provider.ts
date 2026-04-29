@@ -1,5 +1,5 @@
-import { useSessionStore } from "@src/05-entities/session/model";
-import { injectApiConfig } from "@src/06-shared/api";
+import { useSessionStore } from "@entities/session";
+import { injectApiConfig } from "@shared/api";
 
 export const setupApi = () => {
     injectApiConfig({

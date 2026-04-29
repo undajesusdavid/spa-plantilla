@@ -9,7 +9,7 @@ export type LoginPageConfig = {
 
 
 import logo from "@assets/isotipo.png";
-import { useSessionStore } from "@src/05-entities/session/model";
+import { useSessionStore } from "@entities/session";
 
 export function useLoginLayout() {
 

@@ -1,19 +1,5 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import {  userApi } from './user.api';
-
-export const useMyPermissions = (onSuccess: () => void) => {
-  return useMutation({
-    mutationFn: (body: null) => userApi.myPermissions(body),
-    onSuccess,
-  });
-};
-
-
-export const useDeleteUser = () => {
-  return useMutation({
-    mutationFn: (id: string) => userApi.deleteUser(id),
-  });
-}
+import { useQuery } from '@tanstack/react-query';
+import { userApi} from './user.api';
 
 export const useGetUsers = () => {
   return useQuery({

@@ -5,12 +5,12 @@ import { MainLayout } from "@src/01-app/layouts";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { AccessLoginGuard, AccessSystemGuard } from "./loaders";
 import { DesingSystemPage } from "@src/02-pages/desing-system/DesingSystemPage";
-import { UiProvider } from "@shared/lib/providers/UiProvider";
+import App from "../App";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <UiProvider />,
+    element: <App />,
     children: [
       {
         index: true,

@@ -4,7 +4,7 @@ export const id = z.string().uuid();
 export type idType = z.infer<typeof id>;
 
 export const username = z.string()
-  .min(4, "El nombre de usuario debe tener al menos 4 caracteres")
+  .min(5, "El nombre de usuario debe tener al menos 5 caracteres")
   .max(20, "El nombre de usuario no puede exceder los 20 caracteres")
   .regex(/^[a-z0-9_]*$/,"Solo se permiten minúsculas, números y guiones bajos (_)");
 export type usernameType = z.infer<typeof username>;
@@ -32,17 +32,6 @@ export const User = z.object({
 export type userType = z.infer<typeof User>;
 
 
-export const MyPermissionsResponse = z.object({
-  permissions: z.string().array(),
-  roles: z.string().array(),
-});
+export const Users = z.array(User);
+export type usersType = z.infer<typeof Users>;
 
-
-export const UpdateUserRequestDto = z.object({
-  username: z.string().min(2).optional(),
-  email: z.string().email().optional(),
-  active: z.boolean().optional(),
-});
-
-export type MyPermissionsResponse = z.infer<typeof MyPermissionsResponse>;
-export type UpdateUserRequest = z.infer<typeof UpdateUserRequestDto>;
