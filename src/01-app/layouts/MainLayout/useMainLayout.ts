@@ -4,7 +4,7 @@ import { HeaderData, SideBarData } from "./MainLayoutProps";
 import { HEADER_LINKS } from "@config/layout.header-links";
 import { MENU_ITEMS } from "@config/layout.menu-items";
 // Hooks
-import { useSessionStore } from "@entities/session";
+import { useAbility, useSessionStore } from "@entities/session";
 
 //imagenes
 import logo from '@assets/logotipo.png';
@@ -14,6 +14,14 @@ import { useNavigate } from "react-router";
 export function useMainLayout() {
     const { logout, username } = useSessionStore();
     const navigate = useNavigate();
+    const { can } = useAbility();
+
+    // Filtramos el menú según los permisos del usuario
+    const filteredMenu = MENU_ITEMS.map(item => ({
+        ...item,
+        // Solo dejamos los links que el usuario SÍ puede ver
+        links: item.links.filter(link => !link.permission || can(link.permission))
+    })).filter(item => item.links.length > 0); // Opcional: ocultar sección si no tiene links visibles
 
     // Configuración del Header
     const HeaderConfig: HeaderData = {
@@ -32,7 +40,7 @@ export function useMainLayout() {
 
     // Configuración del SideBar
     const SideBarConfig: SideBarData = {
-        menuItems: MENU_ITEMS,
+        menuItems: filteredMenu,
     };
 
     return { HeaderConfig, SideBarConfig };

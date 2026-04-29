@@ -9,7 +9,8 @@ export const getMePermissionsQuery = () => {
     queryKey: ['me-permissions'],
     queryFn: async () => {
       const data = await sessionApi.getMePermissions();
-      const { setPermissions, setRoles } = useSessionStore.getState();
+      //console.log(`Permissions data: ${JSON.stringify(data)}`);
+      const { setPermissions, setRoles, permissions } = useSessionStore.getState();
       setPermissions(data.permissions);
       setRoles(data.roles);
       return data;

@@ -1,13 +1,18 @@
 import { useSessionStore } from "./model/session.store";
 
+// Segmento Lib
+export * from "./lib/providers/AccessControlProvider";
+export * from "../../06-shared/lib/util/map-permissions";
+
+// Segmento UI
+export * from "./ui/Can";
+
 // Segmento API
 export * from "./api/session.query";
-
 
 // Segmento Model
 export * from "./model/session.types";
 export * from "./model/session.store";
-
 
 /**
  * Acceso imperativo para archivos no-React (ej. interceptores de API)

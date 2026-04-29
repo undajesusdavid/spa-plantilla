@@ -5,6 +5,7 @@ import { Outlet, useNavigation } from "react-router-dom";
 import "./styles/main.css";
 import { queryClient } from "@shared/api/query-client";
 import { TopProgressBar } from "@src/06-shared/ui/feedback";
+import { PermissionProvider } from "@entities/session";
 
 const App = () => {
   const navigation = useNavigation();
@@ -15,7 +16,9 @@ const App = () => {
       {isLoading && <TopProgressBar />}
       <ToastProvider>
         <ModalProvider>
-          <Outlet />
+          <PermissionProvider>
+            <Outlet />
+          </PermissionProvider>
         </ModalProvider>
       </ToastProvider>
     </QueryClientProvider>

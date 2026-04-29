@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./SideBarLayout.module.css";
 import { SideBarData } from "../MainLayoutProps";
 
+
 export function SideBarLayout({ config }: { config: SideBarData }) {
   const { pathname } = useLocation();
   const [openModule, setOpenModule] = useState<string | null>(null);
