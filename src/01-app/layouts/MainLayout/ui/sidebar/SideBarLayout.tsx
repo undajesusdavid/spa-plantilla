@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./SideBarLayout.module.css";
-import { SideBarData } from "../MainLayoutProps";
+import { SideBarData } from "../../model/MainLayoutProps";
 
 
 export function SideBarLayout({ config }: { config: SideBarData }) {

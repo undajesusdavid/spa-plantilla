@@ -1,8 +1,7 @@
 import { useSessionStore } from "./model/session.store";
 
 // Segmento Lib
-export * from "./lib/providers/AccessControlProvider";
-export * from "../../06-shared/lib/util/map-permissions";
+export * from "./lib/hooks/useMapPermissions";
 
 // Segmento UI
 export * from "./ui/Can";

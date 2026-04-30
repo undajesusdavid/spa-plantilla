@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./HeaderLayout.module.css";
 import SmallButton from "@ui/buttons/small-button";
-import { HeaderData } from "../MainLayoutProps";
+import { HeaderData } from "../../model/MainLayoutProps";
 
 
 export function HeaderLayout({ config }: { config: HeaderData }) {

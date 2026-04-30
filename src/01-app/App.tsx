@@ -5,7 +5,6 @@ import { Outlet, useNavigation } from "react-router-dom";
 import "./styles/main.css";
 import { queryClient } from "@shared/api/query-client";
 import { TopProgressBar } from "@src/06-shared/ui/feedback";
-import { PermissionProvider } from "@entities/session";
 
 const App = () => {
   const navigation = useNavigation();
@@ -13,12 +12,10 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {isLoading && <TopProgressBar />}
+      {isLoading  && <TopProgressBar />}
       <ToastProvider>
         <ModalProvider>
-          <PermissionProvider>
             <Outlet />
-          </PermissionProvider>
         </ModalProvider>
       </ToastProvider>
     </QueryClientProvider>

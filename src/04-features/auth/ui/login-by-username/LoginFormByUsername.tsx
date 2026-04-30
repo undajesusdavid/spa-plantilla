@@ -3,37 +3,44 @@ import { InputUsername } from "@src/05-entities/user/ui/user-inputs/InputUsernam
 import { BigButton } from "@ui/buttons/big-button";
 import { useLoginFormByUsername } from "./useLoginFormByUsername";
 import styles from "./LoginFormByUsername.module.css";
+import { TopProgressBar } from "@src/06-shared/ui/feedback";
 
 export const LoginByUsername = () => {
-  const { 
-    form : {register, formState: {errors}}, 
-    onSubmit, 
-    isLoading, 
-    isServerError, 
-    serverError 
+  const {
+    form: {
+      register,
+      formState: { errors },
+    },
+    onSubmit,
+    isLoading,
+    isServerError,
+    serverError,
   } = useLoginFormByUsername();
 
   return (
-    <form onSubmit={onSubmit} className={styles.form}>
-      <InputUsername
-        error={errors?.username?.message}
-        {...register("username")}
-      />
+    <>
+      {/*isLoading ? <TopProgressBar /> : null*/}
+      <form onSubmit={onSubmit} className={styles.form}>
+        <InputUsername
+          error={errors?.username?.message}
+          {...register("username")}
+        />
 
-      <InputPassword
-        {...register("password")}
-        error={errors?.password?.message}
-      />
+        <InputPassword
+          {...register("password")}
+          error={errors?.password?.message}
+        />
 
-      {isServerError && (
-        <div className={styles.error}>
-          <span>⚠️</span> {serverError?.message}
-        </div>
-      )}
+        {isServerError && (
+          <div className={styles.error}>
+            <span>⚠️</span> {serverError?.message}
+          </div>
+        )}
 
-      <BigButton type="submit" disabled={isLoading}>
-        {isLoading ? "Validando..." : "Ingresar al sistema"}
-      </BigButton>
-    </form>
+        <BigButton type="submit" disabled={isLoading}>
+          {isLoading ? "Validando..." : "Ingresar al sistema"}
+        </BigButton>
+      </form>
+    </>
   );
 };

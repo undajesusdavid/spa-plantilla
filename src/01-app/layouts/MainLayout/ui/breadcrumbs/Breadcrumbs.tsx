@@ -6,7 +6,7 @@ interface BreadcrumbsProps {
   homeLabel?: string;
 }
 
-const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ homeLabel = "Inicio" }) => {
+export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ homeLabel = "Inicio" }) => {
   const location = useLocation();
 
   // Dividimos la ruta: /proyectos/web -> ["", "proyectos", "web"]
@@ -46,4 +46,4 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ homeLabel = "Inicio" }) => {
   );
 };
 
-export default Breadcrumbs;
+

@@ -1,13 +1,19 @@
+import { useIsMutating } from "@tanstack/react-query";
 import styles from "./LoginPage.module.css";
 import { useLoginLayout } from "./useLoginPage";
 import { LoginByUsername } from "@features";
+import { TopProgressBar } from "@src/06-shared/ui/feedback";
 
 
 export function LoginPage() {
   const { config } = useLoginLayout();
+  const isMutating = useIsMutating();
+  
   
   return (
     <div className={styles.loginWrapper}>
+
+      {isMutating && <TopProgressBar />}
       <div className={styles.loginCard}>
         <div className={styles.logoContainer}>
           <img src={config.logo} alt="Logo" className={styles.logoImage} />

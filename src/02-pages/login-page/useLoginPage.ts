@@ -1,7 +1,7 @@
 
 
 export type LoginPageConfig = {
-    token: string;
+    token: string | null;
     logo: string;
     title: string;
     description: string;
@@ -16,7 +16,7 @@ export function useLoginLayout() {
     const token = useSessionStore((state) => state.token);
     
     const config: LoginPageConfig = {
-        token: token || "",
+        token: token || null,
         logo: logo,
         title: "Sistema de Archivos",
         description: "Por favor, inicia sesión para continuar",
